@@ -18,11 +18,6 @@ import {
   Menu,
   X,
   Globe,
-  Sparkles,
-  Zap,
-  Heart,
-  Star,
-  Rocket,
 } from "lucide-react"
 import Image from "next/image"
 
@@ -53,7 +48,6 @@ function Portfolio() {
   const [isHovering, setIsHovering] = useState(false)
   const [isDesktop, setIsDesktop] = useState(false)
   const [customCursorEnabled, setCustomCursorEnabled] = useState(false)
-  const [navbarVisible, setNavbarVisible] = useState(true)
 
   // Safely check if we're in a browser environment
   const isBrowser = typeof window !== "undefined" && typeof document !== "undefined"
@@ -123,9 +117,6 @@ function Portfolio() {
       if (homeSection) {
         const homeBottom = homeSection.offsetTop + homeSection.offsetHeight
         setShowScrollTop(window.scrollY > homeBottom - 200)
-        
-        // Show navbar after scrolling a bit from the top
-        setNavbarVisible(window.scrollY > 50)
       }
 
       for (const section of sections) {
@@ -248,48 +239,16 @@ function Portfolio() {
   )
 
   const skills = [
-    { 
-      name: "Twitter & Social Growth", 
-      icon: BarChart2, 
-      description: "Building engaged audiences and viral content",
-      color: "gradient-cyan",
-      quote: "Fast, Accurate, Simple, No prompt"
-    },
-    { 
-      name: "KOL and Partnerships", 
-      icon: Handshake, 
-      description: "Strategic collaborations and influencer relations",
-      color: "gradient-green",
-      quote: "Create beautiful, professional AI product photos."
-    },
-    { 
-      name: "Web3 and DeFi", 
-      icon: Globe, 
-      description: "Blockchain technology and decentralized finance",
-      color: "gradient-pink",
-      quote: "We decided to approach it like a professional photographer would."
-    },
+    { name: "Twitter & Social Growth", icon: BarChart2, description: "Building engaged audiences and viral content" },
+    { name: "KOL and Partnerships", icon: Handshake, description: "Strategic collaborations and influencer relations" },
+    { name: "Web3 and DeFi", icon: Globe, description: "Blockchain technology and decentralized finance" },
     {
       name: "Community Management & Campaigns",
       icon: Users,
       description: "Building and nurturing online communities with strategic campaigns",
-      color: "gradient-orange",
-      quote: "Easy to Generate"
     },
-    { 
-      name: "Copy Writing", 
-      icon: PenLine, 
-      description: "Compelling content that converts and engages",
-      color: "gradient-yellow",
-      quote: "Customized Backgrounds"
-    },
-    { 
-      name: "Basic Figma and Canva", 
-      icon: Palette, 
-      description: "Visual design and brand assets",
-      color: "gradient-cyan",
-      quote: "From Pixyer: AI Background Generator Born for Product Photos"
-    },
+    { name: "Copy Writing", icon: PenLine, description: "Compelling content that converts and engages" },
+    { name: "Basic Figma and Canva", icon: Palette, description: "Visual design and brand assets" },
   ]
 
   const companies = [
@@ -406,7 +365,7 @@ function Portfolio() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white dark:bg-black">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#50c9ff] mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading...</p>
         </div>
       </div>
@@ -418,42 +377,38 @@ function Portfolio() {
       {/* Custom Cursor - Only on Desktop */}
       {customCursorEnabled && (
         <div
-          className="fixed top-0 left-0 w-6 h-6 bg-transparent border-2 border-[#50c9ff] rounded-full pointer-events-none z-[9999] transition-all duration-200 ease-out"
+          className="fixed top-0 left-0 w-6 h-6 bg-transparent border-2 border-[#0066ff] rounded-full pointer-events-none z-[9999] transition-all duration-200 ease-out"
           style={{
             transform: `translate(${cursorPosition.x - 12}px, ${cursorPosition.y - 12}px) ${
               isHovering ? "scale(1.5)" : "scale(1)"
             }`,
-            borderColor: isHovering ? "#3bb5e6" : "#50c9ff",
+            borderColor: isHovering ? "#0052cc" : "#0066ff",
           }}
         />
       )}
 
-      {/* Floating Navbar */}
-      <nav 
-        className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-out ${
-          navbarVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
-        }`}
-      >
-        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/20 dark:border-white/10 rounded-2xl px-6 py-3 shadow-2xl shadow-black/10 dark:shadow-black/30">
-          <div className="flex items-center justify-between">
+      {/* Fixed Navbar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md border-b border-gray-200 dark:border-[#1f1f22]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <button
               onClick={() => scrollToSection("home")}
-              className="flex items-center hover:opacity-80 transition-opacity duration-200 mr-8"
+              className="flex items-center hover:opacity-80 transition-opacity duration-200"
             >
-              <Image src="/logo.png" alt="Portfolio Logo" width={120} height={32} className="h-8 w-auto" />
+              <Image src="/logo.png" alt="Portfolio Logo" width={163} height={42} className="h-11 w-auto" />
             </button>
 
             {/* Desktop Navigation - Centered */}
-            <div className="hidden md:flex items-center space-x-6">
+            <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
               {["home", "skills", "work", "testimonials", "contact"].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className={`capitalize transition-all duration-200 hover:scale-105 px-3 py-2 rounded-lg text-sm font-medium ${
+                  className={`capitalize transition-all duration-200 hover:scale-105 ${
                     activeSection === section
-                      ? "text-[#50c9ff] bg-[#50c9ff]/10"
-                      : "text-gray-600 dark:text-gray-300 hover:text-[#50c9ff] hover:bg-gray-100/50 dark:hover:bg-white/5"
+                      ? "text-[#0066ff] font-medium"
+                      : "text-gray-600 dark:text-gray-300 hover:text-[#0066ff]"
                   }`}
                 >
                   {section}
@@ -462,39 +417,39 @@ function Portfolio() {
             </div>
 
             {/* Desktop Dark Mode Toggle - Right */}
-            <div className="hidden md:block ml-8">
+            <div className="hidden md:block">
               <button
                 onClick={() => setDarkMode(!darkMode)}
-                className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200 hover:scale-105"
+                className="p-2 rounded-lg bg-gray-100 dark:bg-[#0f0f10] text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-[#1f1f22] transition-colors duration-200"
               >
-                {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </button>
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center space-x-3">
+            <div className="md:hidden flex items-center space-x-4">
               <button
                 onClick={() => setDarkMode(!darkMode)}
-                className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200"
+                className="p-2 rounded-lg bg-gray-100 dark:bg-[#0f0f10] text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-[#1f1f22] transition-colors duration-200"
               >
                 {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200"
+                className="p-2 rounded-lg bg-gray-100 dark:bg-[#0f0f10] text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-[#1f1f22] transition-colors duration-200"
               >
-                {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </button>
             </div>
           </div>
 
           {/* Mobile Menu */}
           <div
-            className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
-              mobileMenuOpen ? "max-h-96 opacity-100 mt-4 pt-4 border-t border-gray-200/20 dark:border-white/10" : "max-h-0 opacity-0"
+            className={`md:hidden transition-all duration-300 ease-in-out ${
+              mobileMenuOpen ? "max-h-96 opacity-100 pb-4" : "max-h-0 opacity-0 overflow-hidden"
             }`}
           >
-            <div className="space-y-2">
+            <div className="pt-4 space-y-2">
               {["home", "skills", "work", "testimonials", "contact"].map((section) => (
                 <button
                   key={section}
@@ -502,10 +457,10 @@ function Portfolio() {
                     scrollToSection(section)
                     setMobileMenuOpen(false)
                   }}
-                  className={`block w-full text-left px-4 py-3 rounded-xl capitalize transition-all duration-200 text-sm font-medium ${
+                  className={`block w-full text-left px-4 py-2 rounded-lg capitalize transition-all duration-200 hover:scale-105 ${
                     activeSection === section
-                      ? "text-[#50c9ff] bg-[#50c9ff]/10"
-                      : "text-gray-600 dark:text-gray-300 hover:text-[#50c9ff] hover:bg-gray-100/50 dark:hover:bg-white/5"
+                      ? "text-[#0066ff] font-medium bg-[#0066ff]/10"
+                      : "text-gray-600 dark:text-gray-300 hover:text-[#0066ff] hover:bg-gray-100 dark:hover:bg-[#1f1f22]"
                   }`}
                 >
                   {section}
@@ -513,18 +468,18 @@ function Portfolio() {
               ))}
 
               {/* Mobile Social Icons */}
-              <div className="pt-4 border-t border-gray-200/20 dark:border-white/10 mt-4">
+              <div className="pt-4 border-t border-gray-200 dark:border-[#1f1f22] mt-4">
                 <div className="flex justify-center space-x-4">
-                  <button className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#50c9ff] hover:text-white transition-colors duration-200">
+                  <button className="p-2 bg-gray-100 dark:bg-[#1f1f22] rounded-full hover:bg-[#0066ff] hover:text-white transition-colors duration-200">
                     <GitHubIcon />
                   </button>
-                  <button className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#50c9ff] hover:text-white transition-colors duration-200">
+                  <button className="p-2 bg-gray-100 dark:bg-[#1f1f22] rounded-full hover:bg-[#0066ff] hover:text-white transition-colors duration-200">
                     <LinkedInIcon />
                   </button>
-                  <button className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#50c9ff] hover:text-white transition-colors duration-200">
+                  <button className="p-2 bg-gray-100 dark:bg-[#1f1f22] rounded-full hover:bg-[#0066ff] hover:text-white transition-colors duration-200">
                     <TwitterIcon />
                   </button>
-                  <button className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#50c9ff] hover:text-white transition-colors duration-200">
+                  <button className="p-2 bg-gray-100 dark:bg-[#1f1f22] rounded-full hover:bg-[#0066ff] hover:text-white transition-colors duration-200">
                     <EmailIcon />
                   </button>
                 </div>
@@ -537,41 +492,54 @@ function Portfolio() {
       {/* Home Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-black"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 bg-white dark:bg-black"
       >
-        {/* Floating decorative elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 w-20 h-20 bg-[#50c9ff]/20 rounded-full animate-float"></div>
-          <div className="absolute top-40 right-20 w-16 h-16 bg-[#80ef80]/20 rounded-full animate-float-delayed"></div>
-          <div className="absolute bottom-40 left-20 w-24 h-24 bg-[#ff69b4]/20 rounded-full animate-bounce-gentle"></div>
-          <div className="absolute bottom-20 right-10 w-12 h-12 bg-[#fd784f]/20 rounded-full animate-float"></div>
-          <div className="absolute top-1/2 left-1/4 w-8 h-8 bg-[#fdfa72]/30 rounded-full animate-bounce-gentle"></div>
+        {/* Light mode blue glow effect - only visible in light mode */}
+        <div className="absolute inset-0 block dark:hidden">
+          <div
+            className="absolute top-1/2 left-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 opacity-15"
+            style={{
+              background: "radial-gradient(circle, #0066ff 0%, transparent 70%)",
+              filter: "blur(80px)",
+            }}
+          />
+        </div>
+
+        {/* Dark mode blue glow effect - only visible in dark mode */}
+        <div className="absolute inset-0 hidden dark:block">
+          <div
+            className="absolute top-1/2 left-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 opacity-25"
+            style={{
+              background: "radial-gradient(circle, #0066ff 0%, transparent 70%)",
+              filter: "blur(80px)",
+            }}
+          />
         </div>
 
         {/* Content */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="opacity-0 animate-fade-in-up">
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
-              Hi, I'm <span className="bg-gradient-to-r from-[#50c9ff] via-[#ff69b4] to-[#80ef80] bg-clip-text text-transparent">Yash</span>
+              Hi, I'm <span className="text-[#0066ff]">Yash</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-              Driving Web3 growth by blending strategy, storytelling, and community magic. ✨
+              Driving Web3 growth by blending strategy, storytelling, and community magic.
             </p>
 
             {/* Floating Badges */}
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               <div className="animate-badge-1 opacity-0">
-                <Badge className="bg-gradient-to-r from-[#50c9ff] to-[#3bb5e6] text-white border-0 px-6 py-3 text-sm font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                <Badge className="bg-white/80 dark:bg-white/10 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/20 px-4 py-2 text-sm font-medium shadow-lg backdrop-blur-sm hover:shadow-xl hover:bg-gray-800 hover:text-white dark:hover:bg-[#0066ff]/20 dark:hover:text-white dark:hover:border-[#0066ff]/30 transition-all duration-300 hover:scale-105">
                   🧠 Onchain Native
                 </Badge>
               </div>
               <div className="animate-badge-2 opacity-0">
-                <Badge className="bg-gradient-to-r from-[#80ef80] to-[#66cc66] text-white border-0 px-6 py-3 text-sm font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                <Badge className="bg-white/80 dark:bg-white/10 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/20 px-4 py-2 text-sm font-medium shadow-lg backdrop-blur-sm hover:shadow-xl hover:bg-gray-800 hover:text-white dark:hover:bg-[#0066ff]/20 dark:hover:text-white dark:hover:border-[#0066ff]/30 transition-all duration-300 hover:scale-105">
                   🐸 Defi-Degen
                 </Badge>
               </div>
               <div className="animate-badge-3 opacity-0">
-                <Badge className="bg-gradient-to-r from-[#ff69b4] to-[#e55aa0] text-white border-0 px-6 py-3 text-sm font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                <Badge className="bg-white/80 dark:bg-white/10 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/20 px-4 py-2 text-sm font-medium shadow-lg backdrop-blur-sm hover:shadow-xl hover:bg-gray-800 hover:text-white dark:hover:bg-[#0066ff]/20 dark:hover:text-white dark:hover:border-[#0066ff]/30 transition-all duration-300 hover:scale-105">
                   ✨ Vibes
                 </Badge>
               </div>
@@ -580,7 +548,7 @@ function Portfolio() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-[#50c9ff] to-[#3bb5e6] hover:from-[#3bb5e6] hover:to-[#50c9ff] text-white border-0 py-4 px-8 text-lg font-medium transition-all duration-300 hover:scale-105 h-14 w-48 flex items-center justify-center shadow-lg hover:shadow-xl rounded-2xl"
+                className="bg-[#0066ff] hover:bg-[#0052cc] text-white border-2 border-[#0066ff] hover:border-[#0052cc] py-3 text-lg font-medium transition-all duration-200 hover:scale-105 h-14 w-48 flex items-center justify-center shadow-lg hover:shadow-xl"
                 onClick={() => scrollToSection("contact")}
               >
                 <Mail className="mr-2 h-5 w-5 flex-shrink-0" />
@@ -589,7 +557,7 @@ function Portfolio() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-2 border-[#ff69b4] text-[#ff69b4] hover:bg-[#ff69b4] hover:text-white py-4 px-8 text-lg font-medium transition-all duration-300 hover:scale-105 w-48 flex items-center justify-center h-14 backdrop-blur-sm shadow-lg hover:shadow-xl rounded-2xl"
+                className="border-2 border-gray-300 dark:border-white/30 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 hover:border-gray-400 dark:hover:text-white dark:hover:border-white/50 py-3 text-lg font-medium transition-all duration-200 hover:scale-105 w-48 flex items-center justify-center h-14 backdrop-blur-sm shadow-lg hover:shadow-xl"
               >
                 <Download className="mr-2 h-5 w-5 flex-shrink-0" />
                 <span>Resume</span>
@@ -600,62 +568,30 @@ function Portfolio() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-gray-50 dark:bg-[#0a0a0a]">
+      <section id="skills" className="py-20 bg-white dark:bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Skills & <span className="bg-gradient-to-r from-[#50c9ff] to-[#ff69b4] bg-clip-text text-transparent">Expertise</span>
-            </h2>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Skills & Expertise</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Technologies and tools I use to bring ideas to life 🚀
+              Technologies and tools I use to bring ideas to life
             </p>
           </div>
-          
-          {/* Skills Grid - Masonry Style */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {skills.map((skill, index) => {
               const IconComponent = skill.icon
-              const isLarge = index === 1 || index === 3 // Make some cards larger
-              
               return (
                 <Card
                   key={index}
-                  className={`skill-card group border-0 shadow-lg hover:shadow-2xl transition-all duration-500 ${skill.color} ${
-                    isLarge ? "md:row-span-2" : ""
-                  }`}
+                  className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-2 border-gray-200 dark:border-[#1f1f22] bg-white dark:bg-[#0f0f10]"
                 >
-                  <CardContent className={`skill-card-content p-6 text-white relative overflow-hidden ${
-                    isLarge ? "h-full flex flex-col justify-between" : ""
-                  }`}>
-                    {/* Quote marks */}
-                    <div className="absolute top-4 left-4 text-white/30 text-2xl font-bold">"</div>
-                    <div className="absolute bottom-4 right-4 text-white/30 text-2xl font-bold rotate-180">"</div>
-                    
-                    {/* Icon */}
-                    <div className="skill-card-icon mb-4">
-                      <div className="p-3 bg-white/20 rounded-2xl w-fit backdrop-blur-sm">
-                        <IconComponent className="h-8 w-8 text-white" />
+                  <CardContent className="p-6">
+                    <div className="flex items-center mb-4">
+                      <div className="p-3 bg-[#0066ff]/10 rounded-lg mr-4 group-hover:bg-[#0066ff]/20 transition-colors duration-300">
+                        <IconComponent className="h-6 w-6 text-[#0066ff]" />
                       </div>
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{skill.name}</h3>
                     </div>
-                    
-                    {/* Content */}
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-white mb-3">{skill.name}</h3>
-                      
-                      {/* Quote */}
-                      <div className={`${isLarge ? "text-lg mb-6" : "text-base mb-4"} font-medium text-white/90`}>
-                        {skill.quote}
-                      </div>
-                      
-                      {/* Description */}
-                      <p className="text-white/80 text-sm leading-relaxed">{skill.description}</p>
-                    </div>
-                    
-                    {/* From label */}
-                    <div className="mt-4 pt-4 border-t border-white/20">
-                      <p className="text-white/60 text-xs">From</p>
-                      <p className="text-white/80 text-sm font-medium">Yash: Web3 Marketing Expert</p>
-                    </div>
+                    <p className="text-gray-600 dark:text-gray-300">{skill.description}</p>
                   </CardContent>
                 </Card>
               )
@@ -665,14 +601,12 @@ function Portfolio() {
       </section>
 
       {/* Work Section */}
-      <section id="work" className="py-20 bg-white dark:bg-black">
+      <section id="work" className="py-20 bg-gray-50 dark:bg-[#0f0f10]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Work <span className="bg-gradient-to-r from-[#fd784f] to-[#fdfa72] bg-clip-text text-transparent">Experience</span>
-            </h2>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Work Experience</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Companies I've had the pleasure to work with 🤝
+              Companies I've had the pleasure to work with
             </p>
           </div>
 
@@ -685,7 +619,7 @@ function Portfolio() {
                     href={company.twitterUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block bg-white dark:bg-[#0f0f10] border border-gray-300 dark:border-[#1f1f22] rounded-2xl px-6 py-4 shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+                    className="block bg-white dark:bg-[#0f0f10] border border-gray-300 dark:border-[#1f1f22] rounded-lg px-6 py-4 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-pointer"
                   >
                     <Image
                       src={company.logo || "/placeholder.svg"}
@@ -703,33 +637,33 @@ function Portfolio() {
           {/* Work Timeline */}
           <div className="max-w-4xl mx-auto">
             <div className="relative">
-              <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-[#50c9ff] via-[#80ef80] to-[#ff69b4] rounded-full"></div>
+              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-[#0066ff]"></div>
               {workExperience.map((job, index) => (
                 <div key={index} className="relative flex items-start mb-12 last:mb-0">
-                  <div className="absolute left-6 w-6 h-6 bg-gradient-to-r from-[#50c9ff] to-[#80ef80] rounded-full border-4 border-white dark:border-black shadow-lg"></div>
+                  <div className="absolute left-6 w-4 h-4 bg-[#0066ff] rounded-full border-4 border-white dark:border-[#0f0f10]"></div>
                   <div className="ml-20">
-                    <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-lg bg-white dark:bg-[#0a0a0a] hover:scale-[1.02]">
+                    <Card className="hover:shadow-lg transition-all duration-300 border-gray-200 dark:border-[#1f1f22] bg-white dark:bg-[#0a0a0a]">
                       <CardContent className="p-6">
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                           <div className="flex items-center gap-3">
-                            <h3 className="text-xl font-bold text-gray-900 dark:text-white">{job.role}</h3>
+                            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{job.role}</h3>
                             <a
                               href={job.twitterUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-gray-400 dark:text-gray-500 hover:text-[#50c9ff] transition-colors duration-200"
+                              className="text-gray-400 dark:text-gray-500 hover:text-[#1DA1F2] transition-colors duration-200"
                             >
                               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                               </svg>
                             </a>
                           </div>
-                          <Badge className="bg-gradient-to-r from-[#50c9ff] to-[#80ef80] text-white border-0 w-fit mt-2 md:mt-0">
+                          <Badge className="bg-[#0066ff]/10 text-[#0066ff] hover:bg-[#0066ff]/20 w-fit mt-2 md:mt-0">
                             {job.duration}
                           </Badge>
                         </div>
-                        <h4 className="text-lg font-medium text-[#ff69b4] mb-3">{job.company}</h4>
-                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{job.description}</p>
+                        <h4 className="text-lg font-medium text-[#0066ff] mb-3">{job.company}</h4>
+                        <p className="text-gray-600 dark:text-gray-300">{job.description}</p>
                       </CardContent>
                     </Card>
                   </div>
@@ -741,21 +675,19 @@ function Portfolio() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 bg-gray-50 dark:bg-[#0a0a0a]">
+      <section id="testimonials" className="py-20 bg-white dark:bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              What people <span className="bg-gradient-to-r from-[#ff69b4] to-[#fd784f] bg-clip-text text-transparent">say about me</span>
-            </h2>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">What people say about me</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Testimonials from colleagues and clients 💬
+              Testimonials from colleagues and clients
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <Card
                 key={index}
-                className="hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg bg-white dark:bg-[#0f0f10] hover:scale-105"
+                className="hover:shadow-lg transition-all duration-300 hover:-translate-y-2 border-gray-200 dark:border-[#1f1f22] bg-white dark:bg-[#0f0f10]"
               >
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
@@ -767,10 +699,10 @@ function Portfolio() {
                       className="rounded-full mr-3"
                     />
                     <div>
-                      <h4 className="font-bold text-gray-900 dark:text-white">{testimonial.name}</h4>
+                      <h4 className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</h4>
                       <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.handle}</p>
                     </div>
-                    <div className="ml-auto text-[#50c9ff]">
+                    <div className="ml-auto text-[#1DA1F2]">
                       <TwitterIcon />
                     </div>
                   </div>
@@ -783,18 +715,16 @@ function Portfolio() {
       </section>
 
       {/* Footer */}
-      <footer id="contact" className="bg-gray-900 dark:bg-black text-white py-16">
+      <footer id="contact" className="bg-gray-900 dark:bg-[#0a0a0a] text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">
-              Let's work <span className="bg-gradient-to-r from-[#50c9ff] to-[#ff69b4] bg-clip-text text-transparent">together</span>
-            </h2>
+            <h2 className="text-4xl font-bold mb-4">Let's work together</h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Ready to bring your ideas to life? Let's create something amazing together. 🚀
+              Ready to bring your ideas to life? Let's create something amazing together.
             </p>
             <Button
               size="lg"
-              className="bg-gradient-to-r from-[#50c9ff] to-[#ff69b4] hover:from-[#ff69b4] hover:to-[#50c9ff] text-white px-8 py-4 text-lg font-medium transition-all duration-300 hover:scale-105 rounded-2xl shadow-lg hover:shadow-xl"
+              className="bg-[#0066ff] hover:bg-[#0052cc] text-white px-8 py-3 text-lg font-medium transition-all duration-200 hover:scale-105"
             >
               <Mail className="mr-2 h-5 w-5" />
               Get In Touch
@@ -802,16 +732,16 @@ function Portfolio() {
           </div>
 
           <div className="flex justify-center space-x-6 mb-8">
-            <button className="p-3 bg-[#1f1f22] rounded-2xl hover:bg-gradient-to-r hover:from-[#50c9ff] hover:to-[#80ef80] transition-all duration-300 hover:scale-110">
+            <button className="p-3 bg-[#1f1f22] rounded-full hover:bg-[#0066ff] transition-colors duration-200">
               <GitHubIcon />
             </button>
-            <button className="p-3 bg-[#1f1f22] rounded-2xl hover:bg-gradient-to-r hover:from-[#80ef80] hover:to-[#fdfa72] transition-all duration-300 hover:scale-110">
+            <button className="p-3 bg-[#1f1f22] rounded-full hover:bg-[#0066ff] transition-colors duration-200">
               <LinkedInIcon />
             </button>
-            <button className="p-3 bg-[#1f1f22] rounded-2xl hover:bg-gradient-to-r hover:from-[#ff69b4] hover:to-[#fd784f] transition-all duration-300 hover:scale-110">
+            <button className="p-3 bg-[#1f1f22] rounded-full hover:bg-[#0066ff] transition-colors duration-200">
               <TwitterIcon />
             </button>
-            <button className="p-3 bg-[#1f1f22] rounded-2xl hover:bg-gradient-to-r hover:from-[#fd784f] hover:to-[#fdfa72] transition-all duration-300 hover:scale-110">
+            <button className="p-3 bg-[#1f1f22] rounded-full hover:bg-[#0066ff] transition-colors duration-200">
               <EmailIcon />
             </button>
           </div>
@@ -825,7 +755,7 @@ function Portfolio() {
         {showScrollTop && (
           <button
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 p-3 bg-gradient-to-r from-[#50c9ff] to-[#ff69b4] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 animate-fade-in-up"
+            className="fixed bottom-8 right-8 p-3 bg-[#0066ff] text-white rounded-full shadow-lg hover:bg-[#0052cc] transition-all duration-200 hover:scale-110 animate-fade-in-up"
           >
             <ArrowUp className="h-6 w-6" />
           </button>
