@@ -48,6 +48,7 @@ function Portfolio() {
   const [isHovering, setIsHovering] = useState(false)
   const [isDesktop, setIsDesktop] = useState(false)
   const [customCursorEnabled, setCustomCursorEnabled] = useState(false)
+  const [navbarVisible, setNavbarVisible] = useState(true)
 
   // Safely check if we're in a browser environment
   const isBrowser = typeof window !== "undefined" && typeof document !== "undefined"
@@ -117,6 +118,9 @@ function Portfolio() {
       if (homeSection) {
         const homeBottom = homeSection.offsetTop + homeSection.offsetHeight
         setShowScrollTop(window.scrollY > homeBottom - 200)
+        
+        // Show navbar after scrolling a bit from the top
+        setNavbarVisible(window.scrollY > 50)
       }
 
       for (const section of sections) {
@@ -387,28 +391,32 @@ function Portfolio() {
         />
       )}
 
-      {/* Fixed Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md border-b border-gray-200 dark:border-[#1f1f22]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+      {/* Floating Navbar */}
+      <nav 
+        className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-out ${
+          navbarVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+        }`}
+      >
+        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/20 dark:border-white/10 rounded-2xl px-6 py-3 shadow-2xl shadow-black/10 dark:shadow-black/30">
+          <div className="flex items-center justify-between">
             {/* Logo */}
             <button
               onClick={() => scrollToSection("home")}
-              className="flex items-center hover:opacity-80 transition-opacity duration-200"
+              className="flex items-center hover:opacity-80 transition-opacity duration-200 mr-8"
             >
-              <Image src="/logo.png" alt="Portfolio Logo" width={163} height={42} className="h-11 w-auto" />
+              <Image src="/logo.png" alt="Portfolio Logo" width={120} height={32} className="h-8 w-auto" />
             </button>
 
             {/* Desktop Navigation - Centered */}
-            <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
+            <div className="hidden md:flex items-center space-x-6">
               {["home", "skills", "work", "testimonials", "contact"].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className={`capitalize transition-all duration-200 hover:scale-105 ${
+                  className={`capitalize transition-all duration-200 hover:scale-105 px-3 py-2 rounded-lg text-sm font-medium ${
                     activeSection === section
-                      ? "text-[#0066ff] font-medium"
-                      : "text-gray-600 dark:text-gray-300 hover:text-[#0066ff]"
+                      ? "text-[#0066ff] bg-[#0066ff]/10"
+                      : "text-gray-600 dark:text-gray-300 hover:text-[#0066ff] hover:bg-gray-100/50 dark:hover:bg-white/5"
                   }`}
                 >
                   {section}
@@ -417,39 +425,39 @@ function Portfolio() {
             </div>
 
             {/* Desktop Dark Mode Toggle - Right */}
-            <div className="hidden md:block">
+            <div className="hidden md:block ml-8">
               <button
                 onClick={() => setDarkMode(!darkMode)}
-                className="p-2 rounded-lg bg-gray-100 dark:bg-[#0f0f10] text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-[#1f1f22] transition-colors duration-200"
+                className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200 hover:scale-105"
               >
-                {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
               </button>
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center space-x-4">
+            <div className="md:hidden flex items-center space-x-3">
               <button
                 onClick={() => setDarkMode(!darkMode)}
-                className="p-2 rounded-lg bg-gray-100 dark:bg-[#0f0f10] text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-[#1f1f22] transition-colors duration-200"
+                className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200"
               >
                 {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-lg bg-gray-100 dark:bg-[#0f0f10] text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-[#1f1f22] transition-colors duration-200"
+                className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200"
               >
-                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
               </button>
             </div>
           </div>
 
           {/* Mobile Menu */}
           <div
-            className={`md:hidden transition-all duration-300 ease-in-out ${
-              mobileMenuOpen ? "max-h-96 opacity-100 pb-4" : "max-h-0 opacity-0 overflow-hidden"
+            className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
+              mobileMenuOpen ? "max-h-96 opacity-100 mt-4 pt-4 border-t border-gray-200/20 dark:border-white/10" : "max-h-0 opacity-0"
             }`}
           >
-            <div className="pt-4 space-y-2">
+            <div className="space-y-2">
               {["home", "skills", "work", "testimonials", "contact"].map((section) => (
                 <button
                   key={section}
@@ -457,10 +465,10 @@ function Portfolio() {
                     scrollToSection(section)
                     setMobileMenuOpen(false)
                   }}
-                  className={`block w-full text-left px-4 py-2 rounded-lg capitalize transition-all duration-200 hover:scale-105 ${
+                  className={`block w-full text-left px-4 py-3 rounded-xl capitalize transition-all duration-200 text-sm font-medium ${
                     activeSection === section
-                      ? "text-[#0066ff] font-medium bg-[#0066ff]/10"
-                      : "text-gray-600 dark:text-gray-300 hover:text-[#0066ff] hover:bg-gray-100 dark:hover:bg-[#1f1f22]"
+                      ? "text-[#0066ff] bg-[#0066ff]/10"
+                      : "text-gray-600 dark:text-gray-300 hover:text-[#0066ff] hover:bg-gray-100/50 dark:hover:bg-white/5"
                   }`}
                 >
                   {section}
@@ -468,18 +476,18 @@ function Portfolio() {
               ))}
 
               {/* Mobile Social Icons */}
-              <div className="pt-4 border-t border-gray-200 dark:border-[#1f1f22] mt-4">
+              <div className="pt-4 border-t border-gray-200/20 dark:border-white/10 mt-4">
                 <div className="flex justify-center space-x-4">
-                  <button className="p-2 bg-gray-100 dark:bg-[#1f1f22] rounded-full hover:bg-[#0066ff] hover:text-white transition-colors duration-200">
+                  <button className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200">
                     <GitHubIcon />
                   </button>
-                  <button className="p-2 bg-gray-100 dark:bg-[#1f1f22] rounded-full hover:bg-[#0066ff] hover:text-white transition-colors duration-200">
+                  <button className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200">
                     <LinkedInIcon />
                   </button>
-                  <button className="p-2 bg-gray-100 dark:bg-[#1f1f22] rounded-full hover:bg-[#0066ff] hover:text-white transition-colors duration-200">
+                  <button className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200">
                     <TwitterIcon />
                   </button>
-                  <button className="p-2 bg-gray-100 dark:bg-[#1f1f22] rounded-full hover:bg-[#0066ff] hover:text-white transition-colors duration-200">
+                  <button className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200">
                     <EmailIcon />
                   </button>
                 </div>
@@ -492,7 +500,7 @@ function Portfolio() {
       {/* Home Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 bg-white dark:bg-black"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-black"
       >
         {/* Light mode blue glow effect - only visible in light mode */}
         <div className="absolute inset-0 block dark:hidden">
