@@ -48,7 +48,6 @@ function Portfolio() {
   const [isHovering, setIsHovering] = useState(false)
   const [isDesktop, setIsDesktop] = useState(false)
   const [customCursorEnabled, setCustomCursorEnabled] = useState(false)
-  const [navbarVisible, setNavbarVisible] = useState(true)
 
   // Safely check if we're in a browser environment
   const isBrowser = typeof window !== "undefined" && typeof document !== "undefined"
@@ -118,9 +117,6 @@ function Portfolio() {
       if (homeSection) {
         const homeBottom = homeSection.offsetTop + homeSection.offsetHeight
         setShowScrollTop(window.scrollY > homeBottom - 200)
-        
-        // Show navbar after scrolling a bit from the top
-        setNavbarVisible(window.scrollY > 50)
       }
 
       for (const section of sections) {
@@ -391,20 +387,16 @@ function Portfolio() {
         />
       )}
 
-      {/* Floating Navbar */}
-      <nav 
-        className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-out ${
-          navbarVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
-        }`}
-      >
-        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/20 dark:border-white/10 rounded-2xl px-6 py-3 shadow-2xl shadow-black/10 dark:shadow-black/30">
+      {/* Floating Navbar - Always Visible */}
+      <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
+        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/20 dark:border-white/10 rounded-2xl px-4 md:px-6 py-3 shadow-2xl shadow-black/10 dark:shadow-black/30 w-[calc(100vw-2rem)] md:w-auto max-w-4xl">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <button
               onClick={() => scrollToSection("home")}
-              className="flex items-center hover:opacity-80 transition-opacity duration-200 mr-8"
+              className="flex items-center hover:opacity-80 transition-opacity duration-200 mr-4 md:mr-8"
             >
-              <Image src="/logo.png" alt="Portfolio Logo" width={120} height={32} className="h-8 w-auto" />
+              <Image src="/logo.png" alt="Portfolio Logo" width={120} height={32} className="h-6 md:h-8 w-auto" />
             </button>
 
             {/* Desktop Navigation - Centered */}
@@ -500,7 +492,7 @@ function Portfolio() {
       {/* Home Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-black"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-black pt-20"
       >
         {/* Light mode blue glow effect - only visible in light mode */}
         <div className="absolute inset-0 block dark:hidden">
