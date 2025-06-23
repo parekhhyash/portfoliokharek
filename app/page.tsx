@@ -251,7 +251,31 @@ function Portfolio() {
     { name: "Basic Figma and Canva", icon: Palette, description: "Visual design and brand assets" },
   ]
 
-  const companies = [
+  // Different company logos for light and dark modes
+  const companiesLight = [
+    {
+      name: "TechCorp",
+      logo: "https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=200&h=80&fit=crop",
+      twitterUrl: "https://twitter.com/GetYieldFi",
+    },
+    {
+      name: "InnovateLab",
+      logo: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=200&h=80&fit=crop",
+      twitterUrl: "https://twitter.com/afiprotocol_ai",
+    },
+    {
+      name: "DigitalFlow",
+      logo: "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=200&h=80&fit=crop",
+      twitterUrl: "https://twitter.com/M3tameshX",
+    },
+    {
+      name: "CloudSync",
+      logo: "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=200&h=80&fit=crop",
+      twitterUrl: "https://twitter.com/BromiosNFT",
+    },
+  ]
+
+  const companiesDark = [
     {
       name: "PEPE",
       logo: "/company-logos/pepe-logo.png",
@@ -273,6 +297,8 @@ function Portfolio() {
       twitterUrl: "https://twitter.com/BromiosNFT",
     },
   ]
+
+  const companies = darkMode ? companiesDark : companiesLight
 
   const workExperience = [
     {
@@ -470,18 +496,36 @@ function Portfolio() {
               {/* Mobile Social Icons */}
               <div className="pt-4 border-t border-gray-200/20 dark:border-white/10 mt-4">
                 <div className="flex justify-center space-x-4">
-                  <button className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200">
+                  <a
+                    href="https://github.com/example"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
+                  >
                     <GitHubIcon />
-                  </button>
-                  <button className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200">
+                  </a>
+                  <a
+                    href="https://linkedin.com/in/example"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
+                  >
                     <LinkedInIcon />
-                  </button>
-                  <button className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200">
+                  </a>
+                  <a
+                    href="https://twitter.com/example"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
+                  >
                     <TwitterIcon />
-                  </button>
-                  <button className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200">
+                  </a>
+                  <a
+                    href="mailto:example@email.com"
+                    className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
+                  >
                     <EmailIcon />
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -525,25 +569,6 @@ function Portfolio() {
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               Driving Web3 growth by blending strategy, storytelling, and community magic.
             </p>
-
-            {/* Floating Badges */}
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <div className="animate-badge-1 opacity-0">
-                <Badge className="bg-white/80 dark:bg-white/10 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/20 px-4 py-2 text-sm font-medium shadow-lg backdrop-blur-sm hover:shadow-xl hover:bg-gray-800 hover:text-white dark:hover:bg-[#0066ff]/20 dark:hover:text-white dark:hover:border-[#0066ff]/30 transition-all duration-300 hover:scale-105">
-                  🧠 Onchain Native
-                </Badge>
-              </div>
-              <div className="animate-badge-2 opacity-0">
-                <Badge className="bg-white/80 dark:bg-white/10 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/20 px-4 py-2 text-sm font-medium shadow-lg backdrop-blur-sm hover:shadow-xl hover:bg-gray-800 hover:text-white dark:hover:bg-[#0066ff]/20 dark:hover:text-white dark:hover:border-[#0066ff]/30 transition-all duration-300 hover:scale-105">
-                  🐸 Defi-Degen
-                </Badge>
-              </div>
-              <div className="animate-badge-3 opacity-0">
-                <Badge className="bg-white/80 dark:bg-white/10 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/20 px-4 py-2 text-sm font-medium shadow-lg backdrop-blur-sm hover:shadow-xl hover:bg-gray-800 hover:text-white dark:hover:bg-[#0066ff]/20 dark:hover:text-white dark:hover:border-[#0066ff]/30 transition-all duration-300 hover:scale-105">
-                  ✨ Vibes
-                </Badge>
-              </div>
-            </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
@@ -732,18 +757,36 @@ function Portfolio() {
           </div>
 
           <div className="flex justify-center space-x-6 mb-8">
-            <button className="p-3 bg-[#1f1f22] rounded-full hover:bg-[#0066ff] transition-colors duration-200">
+            <a
+              href="https://github.com/example"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 bg-[#1f1f22] rounded-full hover:bg-[#0066ff] transition-colors duration-200"
+            >
               <GitHubIcon />
-            </button>
-            <button className="p-3 bg-[#1f1f22] rounded-full hover:bg-[#0066ff] transition-colors duration-200">
+            </a>
+            <a
+              href="https://linkedin.com/in/example"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 bg-[#1f1f22] rounded-full hover:bg-[#0066ff] transition-colors duration-200"
+            >
               <LinkedInIcon />
-            </button>
-            <button className="p-3 bg-[#1f1f22] rounded-full hover:bg-[#0066ff] transition-colors duration-200">
+            </a>
+            <a
+              href="https://twitter.com/example"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 bg-[#1f1f22] rounded-full hover:bg-[#0066ff] transition-colors duration-200"
+            >
               <TwitterIcon />
-            </button>
-            <button className="p-3 bg-[#1f1f22] rounded-full hover:bg-[#0066ff] transition-colors duration-200">
+            </a>
+            <a
+              href="mailto:example@email.com"
+              className="p-3 bg-[#1f1f22] rounded-full hover:bg-[#0066ff] transition-colors duration-200"
+            >
               <EmailIcon />
-            </button>
+            </a>
           </div>
 
           <div className="text-center text-gray-400 border-t border-[#1f1f22] pt-8">
