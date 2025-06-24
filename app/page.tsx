@@ -415,7 +415,7 @@ function Portfolio() {
 
       {/* Floating Navbar - Always Visible */}
       <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
-        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/20 dark:border-white/10 rounded-2xl px-4 md:px-6 py-3 shadow-2xl shadow-black/10 dark:shadow-black/30 w-[calc(100vw-2rem)] md:w-auto max-w-4xl">
+        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/20 dark:border-white/10 rounded-2xl px-4 md:px-6 py-3 shadow-2xl shadow-black/10 dark:shadow-black/30 w-[calc(100vw-2rem)] md:w-auto max-w-4xl shadow-lg">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <button
@@ -497,7 +497,7 @@ function Portfolio() {
               <div className="pt-4 border-t border-gray-200/20 dark:border-white/10 mt-4">
                 <div className="flex justify-center space-x-4">
                   <a
-                    href="https://github.com/example"
+                    href="https://github.com/yashhparekh"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
@@ -505,7 +505,7 @@ function Portfolio() {
                     <GitHubIcon />
                   </a>
                   <a
-                    href="https://linkedin.com/in/example"
+                    href="https://linkedin.com/in/yashhparekh"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
@@ -513,7 +513,7 @@ function Portfolio() {
                     <LinkedInIcon />
                   </a>
                   <a
-                    href="https://twitter.com/example"
+                    href="https://twitter.com/yashhparekh"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
@@ -521,7 +521,7 @@ function Portfolio() {
                     <TwitterIcon />
                   </a>
                   <a
-                    href="mailto:example@email.com"
+                    href="mailto:yashhparekh@gmail.com"
                     className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
                   >
                     <EmailIcon />
@@ -561,7 +561,7 @@ function Portfolio() {
         </div>
 
         {/* Content */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 -mt-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 -mt-16 md:mt-0">
           <div className="opacity-0 animate-fade-in-up">
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
               Hi, I'm <span className="text-[#0066ff]">Yash</span>
@@ -662,7 +662,13 @@ function Portfolio() {
           {/* Work Timeline */}
           <div className="max-w-4xl mx-auto">
             <div className="relative">
-              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-[#0066ff]"></div>
+              {/* Timeline line - only goes to the last item */}
+              <div 
+                className="absolute left-8 top-0 w-0.5 bg-[#0066ff]"
+                style={{
+                  height: `${(workExperience.length - 1) * 12 * 4 + 2}rem` // Calculated height to end at last dot
+                }}
+              ></div>
               {workExperience.map((job, index) => (
                 <div key={index} className="relative flex items-start mb-12 last:mb-0">
                   <div className="absolute left-6 w-4 h-4 bg-[#0066ff] rounded-full border-4 border-white dark:border-[#0f0f10]"></div>
@@ -758,7 +764,7 @@ function Portfolio() {
 
           <div className="flex justify-center space-x-6 mb-8">
             <a
-              href="https://github.com/example"
+              href="https://github.com/yashhparekh"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 bg-[#1f1f22] rounded-full hover:bg-[#0066ff] transition-colors duration-200"
@@ -766,7 +772,7 @@ function Portfolio() {
               <GitHubIcon />
             </a>
             <a
-              href="https://linkedin.com/in/example"
+              href="https://linkedin.com/in/yashhparekh"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 bg-[#1f1f22] rounded-full hover:bg-[#0066ff] transition-colors duration-200"
@@ -774,7 +780,7 @@ function Portfolio() {
               <LinkedInIcon />
             </a>
             <a
-              href="https://twitter.com/example"
+              href="https://twitter.com/yashhparekh"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 bg-[#1f1f22] rounded-full hover:bg-[#0066ff] transition-colors duration-200"
@@ -782,7 +788,7 @@ function Portfolio() {
               <TwitterIcon />
             </a>
             <a
-              href="mailto:example@email.com"
+              href="mailto:yashhparekh@gmail.com"
               className="p-3 bg-[#1f1f22] rounded-full hover:bg-[#0066ff] transition-colors duration-200"
             >
               <EmailIcon />
