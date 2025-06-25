@@ -420,13 +420,20 @@ function Portfolio() {
             {/* Logo */}
             <button
               onClick={() => scrollToSection("home")}
-              className="flex items-center hover:opacity-80 transition-opacity duration-200 mr-4 md:mr-8"
+              className="flex items-center hover:opacity-80 transition-opacity duration-200 flex-shrink-0"
             >
-              <Image src="/logo.png" alt="Portfolio Logo" width={120} height={32} className="h-6 md:h-8 w-auto" />
+              <Image 
+                src="/logo.png" 
+                alt="Portfolio Logo" 
+                width={120} 
+                height={32} 
+                className="h-6 md:h-8 w-auto object-contain" 
+                priority
+              />
             </button>
 
             {/* Desktop Navigation - Centered */}
-            <div className="hidden md:flex items-center space-x-6">
+            <div className="hidden md:flex items-center space-x-6 flex-1 justify-center">
               {["home", "skills", "work", "testimonials", "contact"].map((section) => (
                 <button
                   key={section}
@@ -443,7 +450,7 @@ function Portfolio() {
             </div>
 
             {/* Desktop Dark Mode Toggle - Right */}
-            <div className="hidden md:block ml-8">
+            <div className="hidden md:block flex-shrink-0">
               <button
                 onClick={() => setDarkMode(!darkMode)}
                 className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200 hover:scale-105"
@@ -453,7 +460,7 @@ function Portfolio() {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center space-x-3">
+            <div className="md:hidden flex items-center space-x-3 flex-shrink-0">
               <button
                 onClick={() => setDarkMode(!darkMode)}
                 className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200"
