@@ -415,7 +415,7 @@ function Portfolio() {
 
       {/* Floating Navbar - Always Visible */}
       <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
-        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/20 dark:border-white/10 rounded-2xl px-4 md:px-6 py-3 shadow-2xl shadow-black/10 dark:shadow-black/30 w-[calc(100vw-2rem)] md:w-auto max-w-4xl">
+        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/20 dark:border-white/10 rounded-2xl px-4 md:px-6 py-3 shadow-sm dark:shadow-2xl dark:shadow-black/30 w-[calc(100vw-2rem)] md:w-auto max-w-4xl">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <button
@@ -662,7 +662,8 @@ function Portfolio() {
           {/* Work Timeline */}
           <div className="max-w-4xl mx-auto">
             <div className="relative">
-              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-[#0066ff]"></div>
+              {/* Timeline line - only extends to the last item */}
+              <div className="absolute left-8 top-0 w-0.5 bg-[#0066ff]" style={{ height: `${(workExperience.length - 1) * 12 + 6}rem` }}></div>
               {workExperience.map((job, index) => (
                 <div key={index} className="relative flex items-start mb-12 last:mb-0">
                   <div className="absolute left-6 w-4 h-4 bg-[#0066ff] rounded-full border-4 border-white dark:border-[#0f0f10]"></div>
