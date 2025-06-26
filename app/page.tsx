@@ -420,7 +420,7 @@ function Portfolio() {
             {/* Logo */}
             <button
               onClick={() => scrollToSection("home")}
-              className="flex items-center hover:opacity-80 transition-opacity duration-200 flex-shrink-0"
+              className="flex items-center hover:opacity-80 transition-opacity duration-200 flex-shrink-0 mr-6 md:mr-8"
             >
               <Image 
                 src="/logo.png" 
@@ -450,7 +450,7 @@ function Portfolio() {
             </div>
 
             {/* Desktop Dark Mode Toggle - Right */}
-            <div className="hidden md:block flex-shrink-0">
+            <div className="hidden md:block flex-shrink-0 ml-6 md:ml-8">
               <button
                 onClick={() => setDarkMode(!darkMode)}
                 className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200 hover:scale-105"
@@ -669,12 +669,17 @@ function Portfolio() {
           {/* Work Timeline */}
           <div className="max-w-4xl mx-auto">
             <div className="relative">
-              {/* Timeline line - only extends to the last item */}
-              <div className="absolute left-8 top-0 w-0.5 bg-[#0066ff]" style={{ height: `${(workExperience.length - 1) * 12 + 6}rem` }}></div>
+              {/* Timeline line - calculated to match the dots exactly */}
+              <div 
+                className="absolute left-6 md:left-8 top-6 w-0.5 bg-[#0066ff]" 
+                style={{ 
+                  height: `${workExperience.length > 1 ? (workExperience.length - 1) * 12 : 0}rem` 
+                }}
+              ></div>
               {workExperience.map((job, index) => (
                 <div key={index} className="relative flex items-start mb-12 last:mb-0">
-                  <div className="absolute left-6 w-4 h-4 bg-[#0066ff] rounded-full border-4 border-white dark:border-[#0f0f10]"></div>
-                  <div className="ml-20">
+                  <div className="absolute left-4 md:left-6 top-6 w-4 h-4 bg-[#0066ff] rounded-full border-4 border-white dark:border-[#0f0f10]"></div>
+                  <div className="ml-16 md:ml-20">
                     <Card className="hover:shadow-lg transition-all duration-300 border-gray-200 dark:border-[#1f1f22] bg-white dark:bg-[#0a0a0a]">
                       <CardContent className="p-6">
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
