@@ -415,25 +415,18 @@ function Portfolio() {
 
       {/* Floating Navbar - Always Visible */}
       <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
-        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/20 dark:border-white/10 rounded-2xl px-4 md:px-6 py-3 shadow-sm dark:shadow-2xl dark:shadow-black/30 w-[calc(100vw-2rem)] md:w-auto max-w-4xl">
+        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/20 dark:border-white/10 rounded-2xl px-4 md:px-6 py-3 shadow-2xl shadow-black/10 dark:shadow-black/30 w-[calc(100vw-2rem)] md:w-auto max-w-4xl">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <button
               onClick={() => scrollToSection("home")}
-              className="flex items-center hover:opacity-80 transition-opacity duration-200 flex-shrink-0 mr-6 md:mr-8"
+              className="flex items-center hover:opacity-80 transition-opacity duration-200 mr-4 md:mr-8"
             >
-              <Image 
-                src="/logo.png" 
-                alt="Portfolio Logo" 
-                width={120} 
-                height={32} 
-                className="h-6 md:h-8 w-auto object-contain" 
-                priority
-              />
+              <Image src="/logo.png" alt="Portfolio Logo" width={120} height={32} className="h-6 md:h-8 w-auto" />
             </button>
 
             {/* Desktop Navigation - Centered */}
-            <div className="hidden md:flex items-center space-x-6 flex-1 justify-center">
+            <div className="hidden md:flex items-center space-x-6">
               {["home", "skills", "work", "testimonials", "contact"].map((section) => (
                 <button
                   key={section}
@@ -450,7 +443,7 @@ function Portfolio() {
             </div>
 
             {/* Desktop Dark Mode Toggle - Right */}
-            <div className="hidden md:block flex-shrink-0 ml-6 md:ml-8">
+            <div className="hidden md:block ml-8">
               <button
                 onClick={() => setDarkMode(!darkMode)}
                 className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200 hover:scale-105"
@@ -460,7 +453,7 @@ function Portfolio() {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center space-x-3 flex-shrink-0">
+            <div className="md:hidden flex items-center space-x-3">
               <button
                 onClick={() => setDarkMode(!darkMode)}
                 className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200"
@@ -669,17 +662,11 @@ function Portfolio() {
           {/* Work Timeline */}
           <div className="max-w-4xl mx-auto">
             <div className="relative">
-              {/* Timeline line - calculated to match the dots exactly */}
-              <div 
-                className="absolute left-6 md:left-8 top-6 w-0.5 bg-[#0066ff]" 
-                style={{ 
-                  height: `${workExperience.length > 1 ? (workExperience.length - 1) * 12 : 0}rem` 
-                }}
-              ></div>
+              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-[#0066ff]"></div>
               {workExperience.map((job, index) => (
                 <div key={index} className="relative flex items-start mb-12 last:mb-0">
-                  <div className="absolute left-4 md:left-6 top-6 w-4 h-4 bg-[#0066ff] rounded-full border-4 border-white dark:border-[#0f0f10]"></div>
-                  <div className="ml-16 md:ml-20">
+                  <div className="absolute left-6 w-4 h-4 bg-[#0066ff] rounded-full border-4 border-white dark:border-[#0f0f10]"></div>
+                  <div className="ml-20">
                     <Card className="hover:shadow-lg transition-all duration-300 border-gray-200 dark:border-[#1f1f22] bg-white dark:bg-[#0a0a0a]">
                       <CardContent className="p-6">
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
