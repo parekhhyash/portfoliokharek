@@ -409,8 +409,8 @@ function Portfolio() {
 
       {/* Floating Navbar - Always Visible */}
       <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
-        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/20 dark:border-white/10 rounded-2xl px-4 md:px-6 py-3 shadow-2xl shadow-black/10 dark:shadow-black/30 w-[calc(100vw-2rem)] md:w-auto md:min-w-[800px] md:max-w-4xl">
-          <div className="flex items-center justify-between w-full">
+        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/20 dark:border-white/10 rounded-2xl px-4 md:px-6 py-3 shadow-2xl shadow-black/10 dark:shadow-black/30 w-[calc(100vw-2rem)] md:w-auto md:min-w-[850px] md:max-w-4xl">
+          <div className="flex items-center w-full">
             {/* Logo */}
             <div className="flex-shrink-0">
               <button
@@ -428,8 +428,8 @@ function Portfolio() {
               </button>
             </div>
 
-            {/* Desktop Navigation - Centered */}
-            <div className="hidden md:flex items-center space-x-6 flex-1 justify-center">
+            {/* Desktop Navigation - Centered with consistent spacing */}
+            <div className="hidden md:flex items-center space-x-6 flex-1 justify-center mx-6">
               {["home", "skills", "work", "testimonials", "contact"].map((section) => (
                 <button
                   key={section}
@@ -445,7 +445,7 @@ function Portfolio() {
               ))}
             </div>
 
-            {/* Desktop Dark Mode Toggle - Right */}
+            {/* Desktop Dark Mode Toggle - Right with consistent spacing */}
             <div className="hidden md:flex flex-shrink-0">
               <button
                 onClick={() => setDarkMode(!darkMode)}
@@ -456,7 +456,7 @@ function Portfolio() {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center space-x-3">
+            <div className="md:hidden flex items-center space-x-3 ml-auto">
               <button
                 onClick={() => setDarkMode(!darkMode)}
                 className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200"
