@@ -536,7 +536,7 @@ function Portfolio() {
       {/* Home Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-black pt-20"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-black pt-20 md:pt-20"
       >
         {/* Light mode blue glow effect - only visible in light mode */}
         <div className="absolute inset-0 block dark:hidden">
@@ -561,7 +561,7 @@ function Portfolio() {
         </div>
 
         {/* Content */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 -mt-16 md:mt-0">
           <div className="opacity-0 animate-fade-in-up">
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
               Hi, I'm <span className="text-[#0066ff]">Yash</span>
