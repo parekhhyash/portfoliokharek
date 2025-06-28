@@ -409,7 +409,7 @@ function Portfolio() {
 
       {/* Floating Navbar - Always Visible */}
       <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
-        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/20 dark:border-white/10 rounded-2xl px-4 md:px-6 py-3 shadow-2xl shadow-black/10 dark:shadow-black/30 w-[calc(100vw-2rem)] md:w-auto md:min-w-[850px] md:max-w-4xl">
+        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/20 dark:border-white/10 rounded-2xl px-4 md:px-6 py-3 shadow-2xl shadow-black/10 dark:shadow-black/30 w-[calc(100vw-2rem)] md:w-auto md:min-w-[750px] md:max-w-4xl">
           <div className="flex items-center w-full">
             {/* Logo */}
             <div className="flex-shrink-0">
@@ -428,8 +428,8 @@ function Portfolio() {
               </button>
             </div>
 
-            {/* Desktop Navigation - Centered with consistent spacing */}
-            <div className="hidden md:flex items-center space-x-6 flex-1 justify-center mx-6">
+            {/* Desktop Navigation - Centered with equal spacing */}
+            <div className="hidden md:flex items-center space-x-6 flex-1 justify-center">
               {["home", "skills", "work", "testimonials", "contact"].map((section) => (
                 <button
                   key={section}
@@ -445,7 +445,7 @@ function Portfolio() {
               ))}
             </div>
 
-            {/* Desktop Dark Mode Toggle - Right with consistent spacing */}
+            {/* Desktop Dark Mode Toggle - Right with equal spacing */}
             <div className="hidden md:flex flex-shrink-0">
               <button
                 onClick={() => setDarkMode(!darkMode)}
