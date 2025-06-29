@@ -419,7 +419,7 @@ function MarketerPortfolio() {
                 className="flex items-center hover:opacity-80 transition-opacity duration-200"
               >
                 <ArrowLeft className="h-5 w-5 text-gray-600 dark:text-gray-300 mr-2" />
-                <span className="text-sm text-gray-600 dark:text-gray-300 md:hidden">Back</span>
+                <span className="text-sm text-gray-600 dark:text-gray-300 hidden md:inline">Back</span>
               </button>
               <button
                 onClick={() => scrollToSection("home")}
@@ -532,7 +532,7 @@ function MarketerPortfolio() {
       {/* Home Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-black pt-20"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-black pt-16 md:pt-20"
       >
         {/* Light mode blue glow effect - only visible in light mode */}
         <div className="absolute inset-0 block dark:hidden">
@@ -559,10 +559,10 @@ function MarketerPortfolio() {
         {/* Content */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="opacity-0 animate-fade-in-up">
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-4 md:mb-6">
               Hi, I'm <span className="text-[#0066ff]">Yash</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto">
               Driving Web3 growth by blending strategy, storytelling, and community magic.
             </p>
 

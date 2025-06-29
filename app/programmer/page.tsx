@@ -112,7 +112,7 @@ function ProgrammerPortfolio() {
     if (!isBrowser) return
 
     try {
-      const sections = ["home", "skills", "projects", "experience", "contact"]
+      const sections = ["home", "skills", "projects", "contact"]
       const scrollPosition = window.scrollY + 100
 
       // Check if we've scrolled past the home section
@@ -285,33 +285,6 @@ function ProgrammerPortfolio() {
     },
   ]
 
-  const experience = [
-    {
-      company: "Senior Full-Stack Developer",
-      role: "TechCorp Solutions",
-      duration: "2023 - Present",
-      description:
-        "Led development of scalable web applications serving 100k+ users. Architected microservices infrastructure and mentored junior developers.",
-      technologies: ["React", "Node.js", "AWS", "PostgreSQL"],
-    },
-    {
-      company: "Frontend Developer",
-      role: "StartupXYZ",
-      duration: "2021 - 2023",
-      description:
-        "Built responsive web applications and mobile apps. Improved performance by 40% and implemented modern development practices.",
-      technologies: ["Vue.js", "React Native", "Firebase", "TypeScript"],
-    },
-    {
-      company: "Junior Developer",
-      role: "DevAgency",
-      duration: "2020 - 2021",
-      description:
-        "Developed client websites and web applications. Collaborated with design teams to implement pixel-perfect interfaces.",
-      technologies: ["JavaScript", "PHP", "MySQL", "WordPress"],
-    },
-  ]
-
   // Social media icons using custom SVG
   const LinkedInIcon = () => (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -379,7 +352,7 @@ function ProgrammerPortfolio() {
                 className="flex items-center hover:opacity-80 transition-opacity duration-200"
               >
                 <ArrowLeft className="h-5 w-5 text-gray-600 dark:text-gray-300 mr-2" />
-                <span className="text-sm text-gray-600 dark:text-gray-300 md:hidden">Back</span>
+                <span className="text-sm text-gray-600 dark:text-gray-300 hidden md:inline">Back</span>
               </button>
               <button
                 onClick={() => scrollToSection("home")}
@@ -391,7 +364,7 @@ function ProgrammerPortfolio() {
 
             {/* Desktop Navigation - Centered */}
             <div className="hidden md:flex items-center space-x-6 flex-1 justify-center">
-              {["home", "skills", "projects", "experience", "contact"].map((section) => (
+              {["home", "skills", "projects", "contact"].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -440,7 +413,7 @@ function ProgrammerPortfolio() {
             }`}
           >
             <div className="space-y-2">
-              {["home", "skills", "projects", "experience", "contact"].map((section) => (
+              {["home", "skills", "projects", "contact"].map((section) => (
                 <button
                   key={section}
                   onClick={() => {
@@ -492,7 +465,7 @@ function ProgrammerPortfolio() {
       {/* Home Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-black pt-20"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-black pt-16 md:pt-20"
       >
         {/* Light mode blue glow effect - only visible in light mode */}
         <div className="absolute inset-0 block dark:hidden">
@@ -519,10 +492,10 @@ function ProgrammerPortfolio() {
         {/* Content */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="opacity-0 animate-fade-in-up">
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-4 md:mb-6">
               Hi, I'm <span className="text-[#0066ff]">Yash</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto">
               Building innovative solutions with modern technologies and clean, efficient code.
             </p>
 
@@ -645,55 +618,6 @@ function ProgrammerPortfolio() {
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section id="experience" className="py-20 bg-white dark:bg-[#0a0a0a]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Work Experience</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              My professional journey and career highlights
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="relative">
-              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-[#0066ff]"></div>
-              {experience.map((job, index) => (
-                <div key={index} className="relative flex items-start mb-12 last:mb-0">
-                  <div className="absolute left-6 w-4 h-4 bg-[#0066ff] rounded-full border-4 border-white dark:border-[#0a0a0a]"></div>
-                  <div className="ml-20">
-                    <Card className="hover:shadow-lg transition-all duration-300 border-gray-200 dark:border-[#1f1f22] bg-white dark:bg-[#0f0f10]">
-                      <CardContent className="p-6">
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{job.role}</h3>
-                          <Badge className="bg-[#0066ff]/10 text-[#0066ff] hover:bg-[#0066ff]/20 w-fit mt-2 md:mt-0">
-                            {job.duration}
-                          </Badge>
-                        </div>
-                        <h4 className="text-lg font-medium text-[#0066ff] mb-3">{job.company}</h4>
-                        <p className="text-gray-600 dark:text-gray-300 mb-4">{job.description}</p>
-                        
-                        <div className="flex flex-wrap gap-2">
-                          {job.technologies.map((tech, techIndex) => (
-                            <Badge
-                              key={techIndex}
-                              variant="outline"
-                              className="border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400"
-                            >
-                              {tech}
-                            </Badge>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
