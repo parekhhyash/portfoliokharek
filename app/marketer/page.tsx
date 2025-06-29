@@ -419,7 +419,7 @@ function MarketerPortfolio() {
                 className="flex items-center hover:opacity-80 transition-opacity duration-200"
               >
                 <ArrowLeft className="h-5 w-5 text-gray-600 dark:text-gray-300 mr-2" />
-                <span className="text-sm text-gray-600 dark:text-gray-300 hidden sm:inline">Back</span>
+                <span className="text-sm text-gray-600 dark:text-gray-300 md:hidden">Back</span>
               </button>
               <button
                 onClick={() => scrollToSection("home")}
