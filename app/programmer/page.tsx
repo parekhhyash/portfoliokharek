@@ -237,25 +237,25 @@ function ProgrammerPortfolio() {
 
   // Programming languages and technologies for marquee
   const techStack1 = [
-    { name: "JavaScript", icon: "🟨" },
-    { name: "TypeScript", icon: "🔷" },
-    { name: "React", icon: "⚛️" },
-    { name: "Next.js", icon: "▲" },
-    { name: "Node.js", icon: "🟢" },
-    { name: "Python", icon: "🐍" },
-    { name: "Java", icon: "☕" },
-    { name: "C++", icon: "🔧" },
+    { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+    { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+    { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+    { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+    { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+    { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+    { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+    { name: "C++", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" },
   ]
 
   const techStack2 = [
-    { name: "Vue.js", icon: "💚" },
-    { name: "Angular", icon: "🅰️" },
-    { name: "Express", icon: "🚀" },
-    { name: "MongoDB", icon: "🍃" },
-    { name: "PostgreSQL", icon: "🐘" },
-    { name: "Docker", icon: "🐳" },
-    { name: "AWS", icon: "☁️" },
-    { name: "Git", icon: "📝" },
+    { name: "Vue.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
+    { name: "Angular", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" },
+    { name: "Express", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+    { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+    { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+    { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+    { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" },
+    { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
   ]
 
   const projects = [
@@ -365,8 +365,7 @@ function ProgrammerPortfolio() {
                 onClick={() => window.location.href = '/'}
                 className="flex items-center hover:opacity-80 transition-opacity duration-200"
               >
-                <ArrowLeft className="h-5 w-5 text-gray-600 dark:text-gray-300 mr-2" />
-                <span className="text-sm text-gray-600 dark:text-gray-300 hidden md:inline">Back</span>
+                <ArrowLeft className="h-5 w-5 text-gray-600 dark:text-gray-300" />
               </button>
               <button
                 onClick={() => scrollToSection("home")}
@@ -514,28 +513,28 @@ function ProgrammerPortfolio() {
         {/* Content */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="opacity-0 animate-fade-in-up">
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
               Hi, I'm <span className="text-[#0066ff]">Yash</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               Building innovative solutions with modern technologies and clean, efficient code.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
                 size="lg"
-                className="bg-[#0066ff] hover:bg-[#0052cc] text-white border-2 border-[#0066ff] hover:border-[#0052cc] py-3 text-lg font-medium transition-all duration-200 hover:scale-105 h-14 w-48 flex items-center justify-center shadow-lg hover:shadow-xl"
+                className="bg-[#0066ff] hover:bg-[#0052cc] text-white border-2 border-[#0066ff] hover:border-[#0052cc] py-3 text-base md:text-lg font-medium transition-all duration-200 hover:scale-105 h-12 md:h-14 w-44 md:w-48 flex items-center justify-center shadow-lg hover:shadow-xl"
                 onClick={() => scrollToSection("contact")}
               >
-                <Mail className="mr-2 h-5 w-5 flex-shrink-0" />
+                <Mail className="mr-2 h-4 w-4 md:h-5 md:w-5 flex-shrink-0" />
                 <span>Contact Me</span>
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="border-2 border-gray-300 dark:border-white/30 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 hover:border-gray-400 dark:hover:text-white dark:hover:border-white/50 py-3 text-lg font-medium transition-all duration-200 hover:scale-105 w-48 flex items-center justify-center h-14 backdrop-blur-sm shadow-lg hover:shadow-xl"
+                className="border-2 border-gray-300 dark:border-white/30 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 hover:border-gray-400 dark:hover:text-white dark:hover:border-white/50 py-3 text-base md:text-lg font-medium transition-all duration-200 hover:scale-105 w-44 md:w-48 flex items-center justify-center h-12 md:h-14 backdrop-blur-sm shadow-lg hover:shadow-xl"
               >
-                <Download className="mr-2 h-5 w-5 flex-shrink-0" />
+                <Download className="mr-2 h-4 w-4 md:h-5 md:w-5 flex-shrink-0" />
                 <span>Resume</span>
               </Button>
             </div>
@@ -562,7 +561,7 @@ function ProgrammerPortfolio() {
                   className="flex-shrink-0 bg-white dark:bg-[#0f0f10] border border-gray-200 dark:border-[#1f1f22] rounded-lg px-6 py-3 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-pointer"
                 >
                   <div className="flex items-center space-x-3">
-                    <span className="text-2xl">{tech.icon}</span>
+                    <img src={tech.icon} alt={tech.name} className="w-6 h-6" />
                     <span className="text-sm font-medium text-gray-900 dark:text-white whitespace-nowrap">
                       {tech.name}
                     </span>
@@ -581,7 +580,7 @@ function ProgrammerPortfolio() {
                   className="flex-shrink-0 bg-white dark:bg-[#0f0f10] border border-gray-200 dark:border-[#1f1f22] rounded-lg px-6 py-3 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-pointer"
                 >
                   <div className="flex items-center space-x-3">
-                    <span className="text-2xl">{tech.icon}</span>
+                    <img src={tech.icon} alt={tech.name} className="w-6 h-6" />
                     <span className="text-sm font-medium text-gray-900 dark:text-white whitespace-nowrap">
                       {tech.name}
                     </span>
