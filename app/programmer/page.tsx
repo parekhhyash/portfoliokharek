@@ -607,19 +607,7 @@ function ProgrammerPortfolio() {
                     <span className="text-gray-600 dark:text-gray-300">
                       Solving complex problems with elegant solutions
                     </span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-[#0066ff] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span className="text-gray-600 dark:text-gray-300">
-                      Learning new technologies and staying updated with industry trends
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-[#0066ff] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span className="text-gray-600 dark:text-gray-300">
-                      Collaborating with teams to build impactful products
-                    </span>
-                  </li>
+                  </li> 
                   <li className="flex items-start">
                     <span className="w-2 h-2 bg-[#0066ff] rounded-full mt-2 mr-3 flex-shrink-0"></span>
                     <span className="text-gray-600 dark:text-gray-300">
