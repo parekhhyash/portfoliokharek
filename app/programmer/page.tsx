@@ -15,6 +15,10 @@ import {
   ArrowLeft,
   ExternalLink,
   Github,
+  User,
+  Calendar,
+  MapPin,
+  Coffee,
 } from "lucide-react"
 import Image from "next/image"
 
@@ -106,7 +110,7 @@ function ProgrammerPortfolio() {
     if (!isBrowser) return
 
     try {
-      const sections = ["home", "skills", "projects", "contact"]
+      const sections = ["home", "about", "skills", "projects", "contact"]
       const scrollPosition = window.scrollY + 100
 
       // Check if we've scrolled past the home section
@@ -377,7 +381,7 @@ function ProgrammerPortfolio() {
 
             {/* Desktop Navigation - Centered */}
             <div className="hidden md:flex items-center space-x-6 flex-1 justify-center">
-              {["home", "skills", "projects", "contact"].map((section) => (
+              {["home", "about", "skills", "projects", "contact"].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -426,7 +430,7 @@ function ProgrammerPortfolio() {
             }`}
           >
             <div className="space-y-2">
-              {["home", "skills", "projects", "contact"].map((section) => (
+              {["home", "about", "skills", "projects", "contact"].map((section) => (
                 <button
                   key={section}
                   onClick={() => {
@@ -537,6 +541,103 @@ function ProgrammerPortfolio() {
                 <Download className="mr-2 h-4 w-4 md:h-5 md:w-5 flex-shrink-0" />
                 <span>Resume</span>
               </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Me Section */}
+      <section id="about" className="py-20 bg-gray-50 dark:bg-[#0f0f10]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">About Me</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Get to know more about my journey, passion, and what drives me as a developer
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Profile Image and Quick Stats */}
+            <div className="text-center lg:text-left">
+              <div className="relative inline-block mb-8">
+                <div className="w-64 h-64 mx-auto lg:mx-0 rounded-2xl bg-gradient-to-br from-[#0066ff]/20 to-purple-500/20 p-1">
+                  <div className="w-full h-full rounded-2xl bg-white dark:bg-[#0a0a0a] flex items-center justify-center">
+                    <User className="w-32 h-32 text-[#0066ff]" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick Stats */}
+              <div className="grid grid-cols-2 gap-6 max-w-sm mx-auto lg:mx-0">
+                <div className="text-center lg:text-left">
+                  <div className="flex items-center justify-center lg:justify-start mb-2">
+                    <Calendar className="h-5 w-5 text-[#0066ff] mr-2" />
+                    <span className="text-sm text-gray-600 dark:text-gray-400">Experience</span>
+                  </div>
+                  <p className="text-2xl font-bold text-gray-900 dark:text-white">3+ Years</p>
+                </div>
+                <div className="text-center lg:text-left">
+                  <div className="flex items-center justify-center lg:justify-start mb-2">
+                    <Coffee className="h-5 w-5 text-[#0066ff] mr-2" />
+                    <span className="text-sm text-gray-600 dark:text-gray-400">Projects</span>
+                  </div>
+                  <p className="text-2xl font-bold text-gray-900 dark:text-white">50+</p>
+                </div>
+              </div>
+            </div>
+
+            {/* About Content */}
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+                  Passionate Full-Stack Developer
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                  I'm a dedicated full-stack developer with a passion for creating innovative web applications 
+                  that solve real-world problems. My journey in programming started during my college years, 
+                  and since then, I've been constantly learning and evolving with the ever-changing tech landscape.
+                </p>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                  I specialize in modern JavaScript frameworks, particularly React and Next.js, and have 
+                  extensive experience with backend technologies like Node.js and Python. I believe in 
+                  writing clean, maintainable code and following best practices to deliver high-quality solutions.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">What I Love About Programming</h4>
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-[#0066ff] rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <span className="text-gray-600 dark:text-gray-300">
+                      Solving complex problems with elegant solutions
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-[#0066ff] rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <span className="text-gray-600 dark:text-gray-300">
+                      Learning new technologies and staying updated with industry trends
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-[#0066ff] rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <span className="text-gray-600 dark:text-gray-300">
+                      Collaborating with teams to build impactful products
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-[#0066ff] rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <span className="text-gray-600 dark:text-gray-300">
+                      Mentoring others and sharing knowledge with the community
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="flex items-center">
+                <MapPin className="h-5 w-5 text-[#0066ff] mr-2" />
+                <span className="text-gray-600 dark:text-gray-300">Based in India, open to remote opportunities</span>
+              </div>
             </div>
           </div>
         </div>
