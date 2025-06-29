@@ -597,11 +597,6 @@ function ProgrammerPortfolio() {
                   that solve real-world problems. My journey in programming started during my college years, 
                   and since then, I've been constantly learning and evolving with the ever-changing tech landscape.
                 </p>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-                  I specialize in modern JavaScript frameworks, particularly React and Next.js, and have 
-                  extensive experience with backend technologies like Node.js and Python. I believe in 
-                  writing clean, maintainable code and following best practices to deliver high-quality solutions.
-                </p>
               </div>
 
               <div>
