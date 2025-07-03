@@ -294,7 +294,7 @@ function MarketerPortfolio() {
     },
     {
       name: "BROMIOS",
-      logo: "/company-logos/bromios-logo.png",
+      logo: "https://i.ibb.co/Rk8f8yTq/image.png",
       twitterUrl: "https://twitter.com/BromiosNFT",
     },
   ]
