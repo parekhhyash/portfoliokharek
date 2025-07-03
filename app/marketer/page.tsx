@@ -279,7 +279,7 @@ function MarketerPortfolio() {
   const companiesDark = [
     {
       name: "YieldFi Dark",
-      logo: "https://i.ibb.co/Dfzm15Dw/image.png",
+      logo: "https://i.ibb.co/3yNH9sLn/image.png",
       twitterUrl: "https://twitter.com/GetYieldFi",
     },
     {
