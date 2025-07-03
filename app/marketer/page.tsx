@@ -271,7 +271,7 @@ function MarketerPortfolio() {
     },
     {
       name: "CloudSync",
-      logo: "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=200&h=80&fit=crop",
+      logo: "https://i.ibb.co/Dfzm15Dw/image.png",
       twitterUrl: "https://twitter.com/BromiosNFT",
     },
   ]
