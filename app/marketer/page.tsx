@@ -256,7 +256,7 @@ function MarketerPortfolio() {
   const companiesLight = [
     {
       name: "TechCorp",
-      logo: "https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=200&h=80&fit=crop",
+      logo: "https://i.ibb.co/Dfzm15Dw/image.png",
       twitterUrl: "https://twitter.com/GetYieldFi",
     },
     {
@@ -270,8 +270,8 @@ function MarketerPortfolio() {
       twitterUrl: "https://twitter.com/M3tameshX",
     },
     {
-      name: "CloudSync",
-      logo: "https://i.ibb.co/Dfzm15Dw/image.png",
+      name: "Bromios",
+      logo: "https://i.ibb.co/Rk8f8yTq/image.png",
       twitterUrl: "https://twitter.com/BromiosNFT",
     },
   ]
