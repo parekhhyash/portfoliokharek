@@ -255,7 +255,7 @@ function MarketerPortfolio() {
   // Different company logos for light and dark modes
   const companiesLight = [
     {
-      name: "TechCorp",
+      name: "YieldFi Light",
       logo: "https://i.ibb.co/Dfzm15Dw/image.png",
       twitterUrl: "https://twitter.com/GetYieldFi",
     },
@@ -278,8 +278,8 @@ function MarketerPortfolio() {
 
   const companiesDark = [
     {
-      name: "PEPE",
-      logo: "/company-logos/pepe-logo.png",
+      name: "YieldFi Dark",
+      logo: "https://i.ibb.co/Dfzm15Dw/image.png",
       twitterUrl: "https://twitter.com/GetYieldFi",
     },
     {
