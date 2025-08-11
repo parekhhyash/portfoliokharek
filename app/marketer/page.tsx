@@ -1,12 +1,10 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
-  Moon,
-  Sun,
   Download,
   Mail,
   ArrowUp,
@@ -40,10 +38,8 @@ function SafeMarketerPortfolio() {
 }
 
 function MarketerPortfolio() {
-  const [darkMode, setDarkMode] = useState(true) // Default to dark mode
   const [activeSection, setActiveSection] = useState("home")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [mounted, setMounted] = useState(false)
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
@@ -58,7 +54,8 @@ function MarketerPortfolio() {
     if (!isBrowser) return
 
     try {
-      setMounted(true)
+      // Force dark mode
+      document.documentElement.classList.add("dark")
 
       // Check if device is desktop and enable custom cursor
       const checkIsDesktop = () => {
@@ -85,26 +82,8 @@ function MarketerPortfolio() {
       }
     } catch (error) {
       console.warn("Mount effect error:", error)
-      setMounted(true) // Still set mounted to true to render the component
     }
   }, [isBrowser])
-
-  useEffect(() => {
-    if (!mounted || !isBrowser) return
-
-    try {
-      const htmlElement = document.documentElement
-      if (htmlElement) {
-        if (darkMode) {
-          htmlElement.classList.add("dark")
-        } else {
-          htmlElement.classList.remove("dark")
-        }
-      }
-    } catch (error) {
-      console.warn("Theme toggle error:", error)
-    }
-  }, [darkMode, mounted, isBrowser])
 
   const handleScroll = useCallback(() => {
     if (!isBrowser) return
@@ -138,7 +117,7 @@ function MarketerPortfolio() {
   }, [isBrowser])
 
   useEffect(() => {
-    if (!mounted || !isBrowser) return
+    if (!isBrowser) return
 
     try {
       window.addEventListener("scroll", handleScroll, { passive: true })
@@ -152,11 +131,11 @@ function MarketerPortfolio() {
     } catch (error) {
       console.warn("Scroll setup error:", error)
     }
-  }, [mounted, handleScroll, isBrowser])
+  }, [handleScroll, isBrowser])
 
   // Custom cursor tracking - only on desktop and when enabled
   useEffect(() => {
-    if (!mounted || !customCursorEnabled || !isBrowser) return
+    if (!customCursorEnabled || !isBrowser) return
 
     let isActive = true
 
@@ -213,7 +192,7 @@ function MarketerPortfolio() {
     } catch (error) {
       console.warn("Cursor setup error:", error)
     }
-  }, [mounted, customCursorEnabled, isBrowser])
+  }, [customCursorEnabled, isBrowser])
 
   const scrollToTop = useCallback(() => {
     if (!isBrowser) return
@@ -276,20 +255,20 @@ function MarketerPortfolio() {
     },
   ]
 
-  const companiesDark = [
+  const companies = [
     {
-      name: "YieldFi Dark",
+      name: "YieldFi",
       logo: "https://i.ibb.co/Dfzm15Dw/image.png",
       twitterUrl: "https://twitter.com/GetYieldFi",
     },
     {
-      name: "Company 2",
-      logo: "/company-logos/company-2-logo.png",
+      name: "AFI Protocol",
+      logo: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=200&h=80&fit=crop",
       twitterUrl: "https://twitter.com/afiprotocol_ai",
     },
     {
       name: "MetaMeshX",
-      logo: "/company-logos/metameshx-logo.png",
+      logo: "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=200&h=80&fit=crop",
       twitterUrl: "https://twitter.com/M3tameshX",
     },
     {
@@ -298,8 +277,6 @@ function MarketerPortfolio() {
       twitterUrl: "https://twitter.com/BromiosNFT",
     },
   ]
-
-  const companies = darkMode ? companiesDark : companiesLight
 
   const workExperience = [
     {
@@ -381,20 +358,8 @@ function MarketerPortfolio() {
     </svg>
   )
 
-  // Don't render until mounted to avoid hydration issues
-  if (!mounted) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-black">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
-        </div>
-      </div>
-    )
-  }
-
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? "dark" : ""}`}>
+    <div className="min-h-screen transition-colors duration-300 dark">
       {/* Custom Cursor - Only on Desktop */}
       {customCursorEnabled && (
         <div
@@ -410,7 +375,7 @@ function MarketerPortfolio() {
 
       {/* Floating Navbar - Always Visible */}
       <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
-        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/20 dark:border-white/10 rounded-2xl px-6 py-3 shadow-2xl shadow-black/10 dark:shadow-black/30 w-[calc(100vw-2rem)] md:w-auto md:min-w-[750px] max-w-4xl">
+        <div className="bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl px-6 py-3 shadow-2xl shadow-black/30 w-[calc(100vw-2rem)] md:w-auto md:min-w-[750px] max-w-4xl">
           <div className="flex items-center justify-between">
             {/* Back Button + Logo */}
             <div className="flex items-center space-x-4">
@@ -418,7 +383,7 @@ function MarketerPortfolio() {
                 onClick={() => window.location.href = '/'}
                 className="flex items-center hover:opacity-80 transition-opacity duration-200"
               >
-                <ArrowLeft className="h-5 w-5 text-gray-600 dark:text-gray-300" />
+                <ArrowLeft className="h-5 w-5 text-gray-300" />
               </button>
               <button
                 onClick={() => scrollToSection("home")}
@@ -437,7 +402,7 @@ function MarketerPortfolio() {
                   className={`capitalize transition-all duration-200 hover:scale-105 px-3 py-2 rounded-lg text-sm font-medium ${
                     activeSection === section
                       ? "text-[#0066ff] bg-[#0066ff]/10"
-                      : "text-gray-600 dark:text-gray-300 hover:text-[#0066ff] hover:bg-gray-100/50 dark:hover:bg-white/5"
+                      : "text-gray-300 hover:text-[#0066ff] hover:bg-white/5"
                   }`}
                 >
                   {section}
@@ -445,27 +410,14 @@ function MarketerPortfolio() {
               ))}
             </div>
 
-            {/* Desktop Dark Mode Toggle - Right */}
-            <div className="hidden md:block">
-              <button
-                onClick={() => setDarkMode(!darkMode)}
-                className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200 hover:scale-105"
-              >
-                {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-              </button>
-            </div>
+            {/* Spacer for right side */}
+            <div className="hidden md:block w-10"></div>
 
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center space-x-3">
               <button
-                onClick={() => setDarkMode(!darkMode)}
-                className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200"
-              >
-                {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-              </button>
-              <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200"
+                className="p-2 rounded-xl bg-white/10 text-gray-300 hover:bg-white/20 transition-all duration-200"
               >
                 {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
               </button>
@@ -475,7 +427,7 @@ function MarketerPortfolio() {
           {/* Mobile Menu */}
           <div
             className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
-              mobileMenuOpen ? "max-h-96 opacity-100 mt-4 pt-4 border-t border-gray-200/20 dark:border-white/10" : "max-h-0 opacity-0"
+              mobileMenuOpen ? "max-h-96 opacity-100 mt-4 pt-4 border-t border-white/10" : "max-h-0 opacity-0"
             }`}
           >
             <div className="space-y-2">
@@ -489,7 +441,7 @@ function MarketerPortfolio() {
                   className={`block w-full text-left px-4 py-3 rounded-xl capitalize transition-all duration-200 text-sm font-medium ${
                     activeSection === section
                       ? "text-[#0066ff] bg-[#0066ff]/10"
-                      : "text-gray-600 dark:text-gray-300 hover:text-[#0066ff] hover:bg-gray-100/50 dark:hover:bg-white/5"
+                      : "text-gray-300 hover:text-[#0066ff] hover:bg-white/5"
                   }`}
                 >
                   {section}
@@ -497,13 +449,13 @@ function MarketerPortfolio() {
               ))}
 
               {/* Mobile Social Icons */}
-              <div className="pt-4 border-t border-gray-200/20 dark:border-white/10 mt-4">
+              <div className="pt-4 border-t border-white/10 mt-4">
                 <div className="flex justify-center space-x-4">
                   <a
                     href="https://linkedin.com/in/example"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
+                    className="p-2 bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
                   >
                     <LinkedInIcon />
                   </a>
@@ -511,13 +463,13 @@ function MarketerPortfolio() {
                     href="https://twitter.com/example"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
+                    className="p-2 bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
                   >
                     <TwitterIcon />
                   </a>
                   <a
                     href="mailto:example@email.com"
-                    className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
+                    className="p-2 bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
                   >
                     <EmailIcon />
                   </a>
@@ -531,21 +483,10 @@ function MarketerPortfolio() {
       {/* Home Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-black pt-12 md:pt-20"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black pt-12 md:pt-20"
       >
-        {/* Light mode blue glow effect - only visible in light mode */}
-        <div className="absolute inset-0 block dark:hidden">
-          <div
-            className="absolute top-1/2 left-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 opacity-15"
-            style={{
-              background: "radial-gradient(circle, #0066ff 0%, transparent 70%)",
-              filter: "blur(80px)",
-            }}
-          />
-        </div>
-
-        {/* Dark mode blue glow effect - only visible in dark mode */}
-        <div className="absolute inset-0 hidden dark:block">
+        {/* Blue glow effect */}
+        <div className="absolute inset-0">
           <div
             className="absolute top-1/2 left-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 opacity-25"
             style={{
@@ -558,10 +499,10 @@ function MarketerPortfolio() {
         {/* Content */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="opacity-0 animate-fade-in-up">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6">
               Hi, I'm <span className="text-[#0066ff]">Yash</span>
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
               Driving Web3 growth by blending strategy, storytelling, and community magic.
             </p>
 
@@ -577,7 +518,7 @@ function MarketerPortfolio() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-2 border-gray-300 dark:border-white/30 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 hover:border-gray-400 dark:hover:text-white dark:hover:border-white/50 py-3 text-base md:text-lg font-medium transition-all duration-200 hover:scale-105 w-44 md:w-48 flex items-center justify-center h-12 md:h-14 backdrop-blur-sm shadow-lg hover:shadow-xl"
+                className="border-2 border-white/30 text-gray-300 hover:bg-white/10 hover:border-white/50 hover:text-white py-3 text-base md:text-lg font-medium transition-all duration-200 hover:scale-105 w-44 md:w-48 flex items-center justify-center h-12 md:h-14 backdrop-blur-sm shadow-lg hover:shadow-xl"
               >
                 <Download className="mr-2 h-4 w-4 md:h-5 md:w-5 flex-shrink-0" />
                 <span>Resume</span>
@@ -588,11 +529,11 @@ function MarketerPortfolio() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-white dark:bg-[#0a0a0a]">
+      <section id="skills" className="py-20 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Skills & Expertise</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-4">Skills & Expertise</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               Marketing strategies and tools I use to drive Web3 growth
             </p>
           </div>
@@ -602,16 +543,16 @@ function MarketerPortfolio() {
               return (
                 <Card
                   key={index}
-                  className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-2 border-gray-200 dark:border-[#1f1f22] bg-white dark:bg-[#0f0f10]"
+                  className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-2 border-[#1f1f22] bg-[#0f0f10]"
                 >
                   <CardContent className="p-6">
                     <div className="flex items-center mb-4">
                       <div className="p-3 bg-[#0066ff]/10 rounded-lg mr-4 group-hover:bg-[#0066ff]/20 transition-colors duration-300">
                         <IconComponent className="h-6 w-6 text-[#0066ff]" />
                       </div>
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{skill.name}</h3>
+                      <h3 className="text-xl font-semibold text-white">{skill.name}</h3>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-300">{skill.description}</p>
+                    <p className="text-gray-300">{skill.description}</p>
                   </CardContent>
                 </Card>
               )
@@ -621,11 +562,11 @@ function MarketerPortfolio() {
       </section>
 
       {/* Work Section */}
-      <section id="work" className="py-20 bg-gray-50 dark:bg-[#0f0f10]">
+      <section id="work" className="py-20 bg-[#0f0f10]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Work Experience</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-4">Work Experience</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               Companies I've had the pleasure to work with
             </p>
           </div>
@@ -639,7 +580,7 @@ function MarketerPortfolio() {
                     href={company.twitterUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block bg-white dark:bg-[#0f0f10] border border-gray-300 dark:border-[#1f1f22] rounded-lg px-6 py-4 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-pointer"
+                    className="block bg-[#0f0f10] border border-[#1f1f22] rounded-lg px-6 py-4 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-pointer"
                   >
                     <Image
                       src={company.logo || "/placeholder.svg"}
@@ -660,18 +601,18 @@ function MarketerPortfolio() {
               <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-[#0066ff]"></div>
               {workExperience.map((job, index) => (
                 <div key={index} className="relative flex items-start mb-12 last:mb-0">
-                  <div className="absolute left-6 w-4 h-4 bg-[#0066ff] rounded-full border-4 border-white dark:border-[#0f0f10]"></div>
+                  <div className="absolute left-6 w-4 h-4 bg-[#0066ff] rounded-full border-4 border-[#0f0f10]"></div>
                   <div className="ml-20">
                     <Card className="hover:shadow-lg transition-all duration-300 border-gray-200 dark:border-[#1f1f22] bg-white dark:bg-[#0a0a0a]">
                       <CardContent className="p-6">
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                           <div className="flex items-center gap-3">
-                            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{job.role}</h3>
+                            <h3 className="text-xl font-semibold text-white">{job.role}</h3>
                             <a
                               href={job.twitterUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-gray-400 dark:text-gray-500 hover:text-[#1DA1F2] transition-colors duration-200"
+                              className="text-gray-500 hover:text-[#1DA1F2] transition-colors duration-200"
                             >
                               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -683,7 +624,7 @@ function MarketerPortfolio() {
                           </Badge>
                         </div>
                         <h4 className="text-lg font-medium text-[#0066ff] mb-3">{job.company}</h4>
-                        <p className="text-gray-600 dark:text-gray-300">{job.description}</p>
+                        <p className="text-gray-300">{job.description}</p>
                       </CardContent>
                     </Card>
                   </div>
@@ -695,11 +636,11 @@ function MarketerPortfolio() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 bg-white dark:bg-[#0a0a0a]">
+      <section id="testimonials" className="py-20 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">What people say about me</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-4">What people say about me</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               Testimonials from colleagues and clients
             </p>
           </div>
@@ -707,7 +648,7 @@ function MarketerPortfolio() {
             {testimonials.map((testimonial, index) => (
               <Card
                 key={index}
-                className="hover:shadow-lg transition-all duration-300 hover:-translate-y-2 border-gray-200 dark:border-[#1f1f22] bg-white dark:bg-[#0f0f10]"
+                className="hover:shadow-lg transition-all duration-300 hover:-translate-y-2 border-[#1f1f22] bg-[#0f0f10]"
               >
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
@@ -719,14 +660,14 @@ function MarketerPortfolio() {
                       className="rounded-full mr-3"
                     />
                     <div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</h4>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.handle}</p>
+                      <h4 className="font-semibold text-white">{testimonial.name}</h4>
+                      <p className="text-sm text-gray-400">{testimonial.handle}</p>
                     </div>
                     <div className="ml-auto text-[#1DA1F2]">
                       <TwitterIcon />
                     </div>
                   </div>
-                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{testimonial.content}</p>
+                  <p className="text-gray-300 leading-relaxed">{testimonial.content}</p>
                 </CardContent>
               </Card>
             ))}
@@ -735,7 +676,7 @@ function MarketerPortfolio() {
       </section>
 
       {/* Footer */}
-      <footer id="contact" className="bg-gray-900 dark:bg-[#0a0a0a] text-white py-16">
+      <footer id="contact" className="bg-[#0a0a0a] text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Let's work together</h2>

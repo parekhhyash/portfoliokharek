@@ -1,33 +1,19 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Code, TrendingUp, ArrowRight } from "lucide-react"
+import { Code, TrendingUp, ArrowRight, ArrowLeft } from "lucide-react"
 import Image from "next/image"
 
 export default function LandingPage() {
-  const [mounted, setMounted] = useState(false)
-
   useEffect(() => {
-    setMounted(true)
     // Force dark mode on the landing page
     document.documentElement.classList.add("dark")
   }, [])
 
-  if (!mounted) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-black">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-400">Loading...</p>
-        </div>
-      </div>
-    )
-  }
-
   return (
-    <div className="h-screen bg-black text-white overflow-hidden flex flex-col">
+    <div className="h-screen bg-black text-white overflow-hidden flex flex-col dark">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div

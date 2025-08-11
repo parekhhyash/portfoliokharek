@@ -1,12 +1,10 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
-  Moon,
-  Sun,
   Download,
   Mail,
   ArrowUp,
@@ -40,10 +38,8 @@ function SafeProgrammerPortfolio() {
 }
 
 function ProgrammerPortfolio() {
-  const [darkMode, setDarkMode] = useState(true) // Default to dark mode
   const [activeSection, setActiveSection] = useState("home")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [mounted, setMounted] = useState(false)
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
@@ -58,7 +54,8 @@ function ProgrammerPortfolio() {
     if (!isBrowser) return
 
     try {
-      setMounted(true)
+      // Force dark mode
+      document.documentElement.classList.add("dark")
 
       // Check if device is desktop and enable custom cursor
       const checkIsDesktop = () => {
@@ -85,26 +82,8 @@ function ProgrammerPortfolio() {
       }
     } catch (error) {
       console.warn("Mount effect error:", error)
-      setMounted(true) // Still set mounted to true to render the component
     }
   }, [isBrowser])
-
-  useEffect(() => {
-    if (!mounted || !isBrowser) return
-
-    try {
-      const htmlElement = document.documentElement
-      if (htmlElement) {
-        if (darkMode) {
-          htmlElement.classList.add("dark")
-        } else {
-          htmlElement.classList.remove("dark")
-        }
-      }
-    } catch (error) {
-      console.warn("Theme toggle error:", error)
-    }
-  }, [darkMode, mounted, isBrowser])
 
   const handleScroll = useCallback(() => {
     if (!isBrowser) return
@@ -138,7 +117,7 @@ function ProgrammerPortfolio() {
   }, [isBrowser])
 
   useEffect(() => {
-    if (!mounted || !isBrowser) return
+    if (!isBrowser) return
 
     try {
       window.addEventListener("scroll", handleScroll, { passive: true })
@@ -152,11 +131,11 @@ function ProgrammerPortfolio() {
     } catch (error) {
       console.warn("Scroll setup error:", error)
     }
-  }, [mounted, handleScroll, isBrowser])
+  }, [handleScroll, isBrowser])
 
   // Custom cursor tracking - only on desktop and when enabled
   useEffect(() => {
-    if (!mounted || !customCursorEnabled || !isBrowser) return
+    if (!customCursorEnabled || !isBrowser) return
 
     let isActive = true
 
@@ -213,7 +192,7 @@ function ProgrammerPortfolio() {
     } catch (error) {
       console.warn("Cursor setup error:", error)
     }
-  }, [mounted, customCursorEnabled, isBrowser])
+  }, [customCursorEnabled, isBrowser])
 
   const scrollToTop = useCallback(() => {
     if (!isBrowser) return
@@ -332,20 +311,8 @@ function ProgrammerPortfolio() {
     </svg>
   )
 
-  // Don't render until mounted to avoid hydration issues
-  if (!mounted) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-black">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
-        </div>
-      </div>
-    )
-  }
-
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? "dark" : ""}`}>
+    <div className="min-h-screen transition-colors duration-300 dark">
       {/* Custom Cursor - Only on Desktop */}
       {customCursorEnabled && (
         <div
@@ -361,7 +328,7 @@ function ProgrammerPortfolio() {
 
       {/* Floating Navbar - Always Visible */}
       <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
-        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/20 dark:border-white/10 rounded-2xl px-6 py-3 shadow-2xl shadow-black/10 dark:shadow-black/30 w-[calc(100vw-2rem)] md:w-auto md:min-w-[750px] max-w-4xl">
+        <div className="bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl px-6 py-3 shadow-2xl shadow-black/30 w-[calc(100vw-2rem)] md:w-auto md:min-w-[750px] max-w-4xl">
           <div className="flex items-center justify-between">
             {/* Back Button + Logo */}
             <div className="flex items-center space-x-4">
@@ -369,7 +336,7 @@ function ProgrammerPortfolio() {
                 onClick={() => window.location.href = '/'}
                 className="flex items-center hover:opacity-80 transition-opacity duration-200"
               >
-                <ArrowLeft className="h-5 w-5 text-gray-600 dark:text-gray-300" />
+                <ArrowLeft className="h-5 w-5 text-gray-300" />
               </button>
               <button
                 onClick={() => scrollToSection("home")}
@@ -388,7 +355,7 @@ function ProgrammerPortfolio() {
                   className={`capitalize transition-all duration-200 hover:scale-105 px-3 py-2 rounded-lg text-sm font-medium ${
                     activeSection === section
                       ? "text-[#0066ff] bg-[#0066ff]/10"
-                      : "text-gray-600 dark:text-gray-300 hover:text-[#0066ff] hover:bg-gray-100/50 dark:hover:bg-white/5"
+                      : "text-gray-300 hover:text-[#0066ff] hover:bg-white/5"
                   }`}
                 >
                   {section}
@@ -396,27 +363,14 @@ function ProgrammerPortfolio() {
               ))}
             </div>
 
-            {/* Desktop Dark Mode Toggle - Right */}
-            <div className="hidden md:block">
-              <button
-                onClick={() => setDarkMode(!darkMode)}
-                className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200 hover:scale-105"
-              >
-                {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-              </button>
-            </div>
+            {/* Spacer for right side */}
+            <div className="hidden md:block w-10"></div>
 
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center space-x-3">
               <button
-                onClick={() => setDarkMode(!darkMode)}
-                className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200"
-              >
-                {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-              </button>
-              <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-xl bg-gray-100/50 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-white/20 transition-all duration-200"
+                className="p-2 rounded-xl bg-white/10 text-gray-300 hover:bg-white/20 transition-all duration-200"
               >
                 {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
               </button>
@@ -426,7 +380,7 @@ function ProgrammerPortfolio() {
           {/* Mobile Menu */}
           <div
             className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
-              mobileMenuOpen ? "max-h-96 opacity-100 mt-4 pt-4 border-t border-gray-200/20 dark:border-white/10" : "max-h-0 opacity-0"
+              mobileMenuOpen ? "max-h-96 opacity-100 mt-4 pt-4 border-t border-white/10" : "max-h-0 opacity-0"
             }`}
           >
             <div className="space-y-2">
@@ -440,7 +394,7 @@ function ProgrammerPortfolio() {
                   className={`block w-full text-left px-4 py-3 rounded-xl capitalize transition-all duration-200 text-sm font-medium ${
                     activeSection === section
                       ? "text-[#0066ff] bg-[#0066ff]/10"
-                      : "text-gray-600 dark:text-gray-300 hover:text-[#0066ff] hover:bg-gray-100/50 dark:hover:bg-white/5"
+                      : "text-gray-300 hover:text-[#0066ff] hover:bg-white/5"
                   }`}
                 >
                   {section}
@@ -448,13 +402,13 @@ function ProgrammerPortfolio() {
               ))}
 
               {/* Mobile Social Icons */}
-              <div className="pt-4 border-t border-gray-200/20 dark:border-white/10 mt-4">
+              <div className="pt-4 border-t border-white/10 mt-4">
                 <div className="flex justify-center space-x-4">
                   <a
                     href="https://linkedin.com/in/example"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
+                    className="p-2 bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
                   >
                     <LinkedInIcon />
                   </a>
@@ -462,7 +416,7 @@ function ProgrammerPortfolio() {
                     href="https://twitter.com/example"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
+                    className="p-2 bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
                   >
                     <TwitterIcon />
                   </a>
@@ -470,13 +424,13 @@ function ProgrammerPortfolio() {
                     href="https://github.com/example"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
+                    className="p-2 bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
                   >
                     <GitHubIcon />
                   </a>
                   <a
                     href="mailto:example@email.com"
-                    className="p-2 bg-gray-100/50 dark:bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
+                    className="p-2 bg-white/10 rounded-xl hover:bg-[#0066ff] hover:text-white transition-colors duration-200"
                   >
                     <EmailIcon />
                   </a>
@@ -490,21 +444,10 @@ function ProgrammerPortfolio() {
       {/* Home Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-black pt-12 md:pt-20"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black pt-12 md:pt-20"
       >
-        {/* Light mode blue glow effect - only visible in light mode */}
-        <div className="absolute inset-0 block dark:hidden">
-          <div
-            className="absolute top-1/2 left-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 opacity-15"
-            style={{
-              background: "radial-gradient(circle, #0066ff 0%, transparent 70%)",
-              filter: "blur(80px)",
-            }}
-          />
-        </div>
-
-        {/* Dark mode blue glow effect - only visible in dark mode */}
-        <div className="absolute inset-0 hidden dark:block">
+        {/* Blue glow effect */}
+        <div className="absolute inset-0">
           <div
             className="absolute top-1/2 left-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 opacity-25"
             style={{
@@ -517,10 +460,10 @@ function ProgrammerPortfolio() {
         {/* Content */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="opacity-0 animate-fade-in-up">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6">
               Hi, I'm <span className="text-[#0066ff]">Yash</span>
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
               Building innovative solutions with modern technologies and clean, efficient code.
             </p>
 
@@ -536,7 +479,7 @@ function ProgrammerPortfolio() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-2 border-gray-300 dark:border-white/30 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 hover:border-gray-400 dark:hover:text-white dark:hover:border-white/50 py-3 text-base md:text-lg font-medium transition-all duration-200 hover:scale-105 w-44 md:w-48 flex items-center justify-center h-12 md:h-14 backdrop-blur-sm shadow-lg hover:shadow-xl"
+                className="border-2 border-white/30 text-gray-300 hover:bg-white/10 hover:border-white/50 hover:text-white py-3 text-base md:text-lg font-medium transition-all duration-200 hover:scale-105 w-44 md:w-48 flex items-center justify-center h-12 md:h-14 backdrop-blur-sm shadow-lg hover:shadow-xl"
               >
                 <Download className="mr-2 h-4 w-4 md:h-5 md:w-5 flex-shrink-0" />
                 <span>Resume</span>
@@ -547,11 +490,11 @@ function ProgrammerPortfolio() {
       </section>
 
       {/* About Me Section */}
-      <section id="about" className="py-20 bg-gray-50 dark:bg-[#0f0f10]">
+      <section id="about" className="py-20 bg-[#0f0f10]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">About Me</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               Get to know more about my journey, passion, and what drives me as a developer
             </p>
           </div>
@@ -561,7 +504,7 @@ function ProgrammerPortfolio() {
             <div className="text-center lg:text-left">
               <div className="relative inline-block mb-8">
                 <div className="w-64 h-64 mx-auto lg:mx-0 rounded-2xl bg-gradient-to-br from-[#0066ff]/20 to-purple-500/20 p-1">
-                  <div className="w-full h-full rounded-2xl bg-white dark:bg-[#0a0a0a] flex items-center justify-center">
+                  <div className="w-full h-full rounded-2xl bg-[#0a0a0a] flex items-center justify-center">
                     <User className="w-32 h-32 text-[#0066ff]" />
                   </div>
                 </div>
@@ -572,16 +515,16 @@ function ProgrammerPortfolio() {
                 <div className="text-center lg:text-left">
                   <div className="flex items-center justify-center lg:justify-start mb-2">
                     <Calendar className="h-5 w-5 text-[#0066ff] mr-2" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Experience</span>
+                    <span className="text-sm text-gray-400">Experience</span>
                   </div>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">3+ Years</p>
+                  <p className="text-2xl font-bold text-white">3+ Years</p>
                 </div>
                 <div className="text-center lg:text-left">
                   <div className="flex items-center justify-center lg:justify-start mb-2">
                     <Coffee className="h-5 w-5 text-[#0066ff] mr-2" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Projects</span>
+                    <span className="text-sm text-gray-400">Projects</span>
                   </div>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">50+</p>
+                  <p className="text-2xl font-bold text-white">50+</p>
                 </div>
               </div>
             </div>
@@ -589,10 +532,10 @@ function ProgrammerPortfolio() {
             {/* About Content */}
             <div className="space-y-6">
               <div>
-                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+                <h3 className="text-2xl font-semibold text-white mb-4">
                   Passionate Full-Stack Developer
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                <p className="text-gray-300 leading-relaxed mb-4">
                   I'm a dedicated full-stack developer with a passion for creating innovative web applications 
                   that solve real-world problems. My journey in programming started during my college years, 
                   and since then, I've been constantly learning and evolving with the ever-changing tech landscape.
@@ -600,17 +543,17 @@ function ProgrammerPortfolio() {
               </div>
 
               <div>
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">What I Love About Programming</h4>
+                <h4 className="text-lg font-semibold text-white mb-3">What I Love About Programming</h4>
                 <ul className="space-y-2">
                   <li className="flex items-start">
                     <span className="w-2 h-2 bg-[#0066ff] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span className="text-gray-600 dark:text-gray-300">
+                    <span className="text-gray-300">
                       Solving complex problems with elegant solutions
                     </span>
                   </li> 
                   <li className="flex items-start">
                     <span className="w-2 h-2 bg-[#0066ff] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span className="text-gray-600 dark:text-gray-300">
+                    <span className="text-gray-300">
                       Mentoring others and sharing knowledge with the community
                     </span>
                   </li>
@@ -619,7 +562,7 @@ function ProgrammerPortfolio() {
 
               <div className="flex items-center">
                 <MapPin className="h-5 w-5 text-[#0066ff] mr-2" />
-                <span className="text-gray-600 dark:text-gray-300">Based in India, open to remote opportunities</span>
+                <span className="text-gray-300">Based in India, open to remote opportunities</span>
               </div>
             </div>
           </div>
@@ -627,11 +570,11 @@ function ProgrammerPortfolio() {
       </section>
 
       {/* Skills Section with Marquee */}
-      <section id="skills" className="py-20 bg-white dark:bg-[#0a0a0a] overflow-hidden">
+      <section id="skills" className="py-20 bg-[#0a0a0a] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Technical Skills</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-4">Technical Skills</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               Technologies and frameworks I use to build amazing applications
             </p>
           </div>
@@ -642,11 +585,11 @@ function ProgrammerPortfolio() {
               {techStack1.concat(techStack1).map((tech, index) => (
                 <div
                   key={`${tech.name}-${index}`}
-                  className="flex-shrink-0 bg-white dark:bg-[#0f0f10] border border-gray-200 dark:border-[#1f1f22] rounded-lg px-6 py-3 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-pointer"
+                  className="flex-shrink-0 bg-[#0f0f10] border border-[#1f1f22] rounded-lg px-6 py-3 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-pointer"
                 >
                   <div className="flex items-center space-x-3">
                     <img src={tech.icon} alt={tech.name} className="w-6 h-6" />
-                    <span className="text-sm font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                    <span className="text-sm font-medium text-white whitespace-nowrap">
                       {tech.name}
                     </span>
                   </div>
@@ -661,11 +604,11 @@ function ProgrammerPortfolio() {
               {techStack2.concat(techStack2).map((tech, index) => (
                 <div
                   key={`${tech.name}-${index}`}
-                  className="flex-shrink-0 bg-white dark:bg-[#0f0f10] border border-gray-200 dark:border-[#1f1f22] rounded-lg px-6 py-3 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-pointer"
+                  className="flex-shrink-0 bg-[#0f0f10] border border-[#1f1f22] rounded-lg px-6 py-3 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-pointer"
                 >
                   <div className="flex items-center space-x-3">
                     <img src={tech.icon} alt={tech.name} className="w-6 h-6" />
-                    <span className="text-sm font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                    <span className="text-sm font-medium text-white whitespace-nowrap">
                       {tech.name}
                     </span>
                   </div>
@@ -677,11 +620,11 @@ function ProgrammerPortfolio() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-gray-50 dark:bg-[#0f0f10]">
+      <section id="projects" className="py-20 bg-[#0f0f10]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Featured Projects</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-4">Featured Projects</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               Some of the projects I've built and contributed to
             </p>
           </div>
@@ -690,7 +633,7 @@ function ProgrammerPortfolio() {
             {projects.map((project, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-gray-200 dark:border-[#1f1f22] bg-white dark:bg-[#0a0a0a] overflow-hidden"
+                className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-[#1f1f22] bg-[#0a0a0a] overflow-hidden"
               >
                 <div className="relative overflow-hidden">
                   <Image
@@ -703,8 +646,8 @@ function ProgrammerPortfolio() {
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
                 </div>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{project.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">{project.description}</p>
+                  <h3 className="text-xl font-semibold text-white mb-3">{project.title}</h3>
+                  <p className="text-gray-300 mb-4 leading-relaxed">{project.description}</p>
                   
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech, techIndex) => (
@@ -731,7 +674,7 @@ function ProgrammerPortfolio() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+                      className="flex items-center text-gray-400 hover:text-white transition-colors duration-200"
                     >
                       <Github className="h-4 w-4 mr-1" />
                       Code
@@ -745,7 +688,7 @@ function ProgrammerPortfolio() {
       </section>
 
       {/* Footer */}
-      <footer id="contact" className="bg-gray-900 dark:bg-[#0a0a0a] text-white py-16">
+      <footer id="contact" className="bg-[#0a0a0a] text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Let's build something together</h2>
