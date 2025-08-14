@@ -674,12 +674,12 @@ function MarketerPortfolio() {
                     <Image
                       src={testimonial.avatar || "/placeholder.svg"}
                       alt={testimonial.name}
-                      width={60}
-                      height={60}
-                      className="rounded-full mr-4 flex-shrink-0"
+                     width={48}
+                     height={48}
+                     className="rounded-full mr-4 flex-shrink-0"
                     />
                     <div>
-                      <h4 className="font-bold text-white text-lg leading-tight mb-1">{testimonial.name}</h4>
+                     <h4 className="font-bold text-white text-xl leading-tight mb-1">{testimonial.name}</h4>
                       <p className="text-sm text-gray-400 font-normal mb-3">{testimonial.role}</p>
                     </div>
                   </div>
