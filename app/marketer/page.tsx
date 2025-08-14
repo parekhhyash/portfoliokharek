@@ -680,12 +680,11 @@ function MarketerPortfolio() {
                     />
                     <div>
                       <h4 className="font-bold text-white text-lg leading-tight mb-1">{testimonial.name}</h4>
-                      <p className="text-sm text-gray-400 font-normal">{testimonial.role}</p>
+                      <p className="text-sm text-gray-400 font-normal mb-3">{testimonial.role}</p>
                     </div>
                   </div>
 
-                  {/* Testimonial Content */}
-                  <blockquote className="text-gray-300 leading-relaxed text-base italic">
+                  <blockquote className="text-gray-300 leading-relaxed text-base">
                     "{testimonial.content}"
                   </blockquote>
                 </CardContent>
