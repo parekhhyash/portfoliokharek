@@ -307,13 +307,13 @@ function MarketerPortfolio() {
 
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      role: "Product Manager at TechCorp",
+      name: "Shubham",
+      role: "Founder of MetaeshX",
       handle: "sarahj_dev",
       content:
         "Working with Yash was incredible! Their marketing expertise and attention to detail helped us grow our community by 300% in just 3 months. Highly recommended! 🚀",
-      avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=64&h=64&fit=crop&crop=face",
-      twitterUrl: "https://twitter.com/sarahj_dev",
+      avatar: "https://i.ibb.co/bjBWSJGT/image.png",
+      twitterUrl: "https://twitter.com/ashubhamz",
     },
     {
       name: "Mike Chen",
