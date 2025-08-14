@@ -316,22 +316,22 @@ function MarketerPortfolio() {
       twitterUrl: "https://twitter.com/ashubhamz",
     },
     {
-      name: "Mike Chen",
-      role: "Founder at CryptoVentures",
-      handle: "mikechen_crypto",
+      name: "Ravi",
+      role: "Defi Growth at YieldFi",
+      handle: "ravixkr",
       content:
         "Yash's Web3 marketing skills are top-notch. They transformed our social presence and brought real engagement to our DeFi project. Great communication throughout! 💯",
-      avatar: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=64&h=64&fit=crop&crop=face",
-      twitterUrl: "https://twitter.com/mikechen_crypto",
+      avatar: "https://i.ibb.co/W4xKH7kk/image.png",
+      twitterUrl: "https://twitter.com/ravixkr",
     },
     {
-      name: "Emily Rodriguez",
-      role: "Marketing Director at BlockChain Inc",
-      handle: "emily_web3",
+      name: "WhySid",
+      role: "Cooked Guy",
+      handle: "sidhanth_here",
       content:
         "I've worked with many marketers, but Yash stands out for their deep understanding of Web3 culture and community building. They delivered exactly what we needed! 👏",
-      avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=64&h=64&fit=crop&crop=face",
-      twitterUrl: "https://twitter.com/emily_web3",
+      avatar: "https://i.ibb.co/rG2VPBG3/image.png",
+      twitterUrl: "https://twitter.com/sidhanth_here",
     },
   ]
 
