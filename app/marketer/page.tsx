@@ -308,7 +308,7 @@ function MarketerPortfolio() {
   const testimonials = [
     {
       name: "Shubham",
-      role: "Founder of MetaeshX",
+      role: "Founder of MetameshX",
       handle: "sarahj_dev",
       content:
         "Working with Yash was incredible! Their marketing expertise and attention to detail helped us grow our community by 300% in just 3 months. Highly recommended! 🚀",
