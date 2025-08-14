@@ -308,24 +308,30 @@ function MarketerPortfolio() {
   const testimonials = [
     {
       name: "Sarah Johnson",
-      handle: "@sarahj_dev",
+      role: "Product Manager at TechCorp",
+      handle: "sarahj_dev",
       content:
         "Working with Yash was incredible! Their marketing expertise and attention to detail helped us grow our community by 300% in just 3 months. Highly recommended! 🚀",
-      avatar: "/placeholder.svg?height=40&width=40",
+      avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=64&h=64&fit=crop&crop=face",
+      twitterUrl: "https://twitter.com/sarahj_dev",
     },
     {
       name: "Mike Chen",
-      handle: "@mikechen_crypto",
+      role: "Founder at CryptoVentures",
+      handle: "mikechen_crypto",
       content:
         "Yash's Web3 marketing skills are top-notch. They transformed our social presence and brought real engagement to our DeFi project. Great communication throughout! 💯",
-      avatar: "/placeholder.svg?height=40&width=40",
+      avatar: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=64&h=64&fit=crop&crop=face",
+      twitterUrl: "https://twitter.com/mikechen_crypto",
     },
     {
       name: "Emily Rodriguez",
-      handle: "@emily_web3",
+      role: "Marketing Director at BlockChain Inc",
+      handle: "emily_web3",
       content:
         "I've worked with many marketers, but Yash stands out for their deep understanding of Web3 culture and community building. They delivered exactly what we needed! 👏",
-      avatar: "/placeholder.svg?height=40&width=40",
+      avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=64&h=64&fit=crop&crop=face",
+      twitterUrl: "https://twitter.com/emily_web3",
     },
   ]
 
@@ -648,26 +654,40 @@ function MarketerPortfolio() {
             {testimonials.map((testimonial, index) => (
               <Card
                 key={index}
-                className="hover:shadow-lg transition-all duration-300 hover:-translate-y-2 border-[#1f1f22] bg-[#0f0f10]"
+                className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-[#1f1f22] bg-[#0f0f10] rounded-2xl overflow-hidden"
               >
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
+                <CardContent className="p-5 relative">
+                  {/* Twitter Icon - Top Right */}
+                  <a
+                    href={testimonial.twitterUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute top-5 right-5 p-1 text-gray-500 hover:text-[#1DA1F2] transition-colors duration-200"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                  </a>
+
+                  {/* Profile Section */}
+                  <div className="flex items-start mb-4 pr-8">
                     <Image
                       src={testimonial.avatar || "/placeholder.svg"}
                       alt={testimonial.name}
-                      width={40}
-                      height={40}
-                      className="rounded-full mr-3"
+                      width={60}
+                      height={60}
+                      className="rounded-full mr-4 flex-shrink-0"
                     />
                     <div>
-                      <h4 className="font-semibold text-white">{testimonial.name}</h4>
-                      <p className="text-sm text-gray-400">{testimonial.handle}</p>
-                    </div>
-                    <div className="ml-auto text-[#1DA1F2]">
-                      <TwitterIcon />
+                      <h4 className="font-bold text-white text-lg leading-tight mb-1">{testimonial.name}</h4>
+                      <p className="text-sm text-gray-400 font-normal">{testimonial.role}</p>
                     </div>
                   </div>
-                  <p className="text-gray-300 leading-relaxed">{testimonial.content}</p>
+
+                  {/* Testimonial Content */}
+                  <blockquote className="text-gray-300 leading-relaxed text-base italic">
+                    "{testimonial.content}"
+                  </blockquote>
                 </CardContent>
               </Card>
             ))}
